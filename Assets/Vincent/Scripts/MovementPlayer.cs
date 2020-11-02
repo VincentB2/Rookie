@@ -10,11 +10,14 @@ public class MovementPlayer : MonoBehaviour
     private Vector2 direction;
     public Canvas canvas;
     public GameObject Arrow;
-    public GameObject bullet;
+    
+    public enum Weapon {MITRAILLETTE, SHOTGUN};
+
+    public Weapon weapon;
 
     private bool canFire = true;
     public float cadence;
-
+    public GameObject bullet;
 
     // ------------------------------- MOVE
     public float speed;
@@ -40,7 +43,7 @@ public class MovementPlayer : MonoBehaviour
 
         Curseur();
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && canFire)
         {
             StartCoroutine("Fire");
         }
@@ -75,6 +78,8 @@ public class MovementPlayer : MonoBehaviour
         direction *= screenPos.x - 80*canvasScale;
         Vector2 cellScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
 
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         Arrow.GetComponent<RectTransform>().localPosition = ((cellScreenPosition + direction) / canvasScale);
 
     }
@@ -82,20 +87,57 @@ public class MovementPlayer : MonoBehaviour
 
     IEnumerator Fire()
     {
-        canFire = false;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - transform.position;
-        direction = direction.normalized;
-        direction *= transform.localScale.x / (2 * transform.localScale.x);
+        if (weapon == Weapon.MITRAILLETTE)
+        {
+            canFire = false;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = mousePos - transform.position;
+            direction = direction.normalized;
+            direction *= transform.localScale.x / (2 * transform.localScale.x);
 
-        Vector2 cellScreenPosition = transform.position;
+            Vector2 cellScreenPosition = transform.position;
 
-        Vector2 bulletPos = cellScreenPosition + direction;
+            Vector2 bulletPos = cellScreenPosition + direction;
 
-        GameObject newBullet = Instantiate(bullet, bulletPos, transform.rotation);
-        newBullet.GetComponent<Rigidbody2D>().AddForce(direction * 30, ForceMode2D.Impulse);
+            GameObject newBullet = Instantiate(bullet, bulletPos, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction * 30, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(cadence);
-        canFire = true;
+            yield return new WaitForSeconds(cadence * 0.1f);
+            canFire = true;
+        }
+
+        if (weapon == Weapon.SHOTGUN)
+        {
+            canFire = false;
+            Vector2 cellScreenPosition = transform.position;
+            Vector2 direction1 = Camera.main.ScreenToWorldPoint(Arrow.transform.position) - transform.position;
+            direction1 = direction1.normalized;
+            direction1 *= 0.5f;
+            
+            Vector2 bulletPos1 = cellScreenPosition + direction1;
+
+            Vector2 direction2 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(0).transform.position) - transform.position;
+            direction2 = direction2.normalized;
+            direction2 *= 0.5f;
+            Vector2 bulletPos2 = cellScreenPosition + direction2;
+
+            Vector2 direction3 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(1).transform.position) - transform.position;
+            direction3 = direction3.normalized;
+            direction3 *= 0.5f;
+
+            Vector2 bulletPos3 = cellScreenPosition + direction3;
+
+            GameObject newBullet = Instantiate(bullet, bulletPos1, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * 30, ForceMode2D.Impulse);
+
+            GameObject newBullet1 = Instantiate(bullet, bulletPos2, transform.rotation);
+            newBullet1.GetComponent<Rigidbody2D>().AddForce(direction2 * 30, ForceMode2D.Impulse);
+
+            GameObject newBullet2 = Instantiate(bullet, bulletPos3, transform.rotation);
+            newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * 30, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(cadence * 0.5f);
+            canFire = true;
+        }
     }
 }
