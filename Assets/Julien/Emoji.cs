@@ -20,8 +20,6 @@ class Emoji : MonoBehaviour
     Vector3 targetPos;
     Vector3 thisPos;
     float angle;
-    // Effect Bools
-    bool bJoy, bRage, bColdFace, bHeartEyes, bSlightSmile;
     void Awake()
     {
         if (emojiSprite)
@@ -39,25 +37,7 @@ class Emoji : MonoBehaviour
             targetPos.x = targetPos.x - thisPos.x;
             targetPos.y = targetPos.y - thisPos.y;
             angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        }
-        switch (emojiType)
-        {
-            case Type.Joy:
-                bJoy = true;
-                break;
-            case Type.Rage:
-                bRage = true;
-                break;
-            case Type.ColdFace:
-                bColdFace = true;
-                break;
-            case Type.HeartEyes:
-                bHeartEyes = true;
-                break;
-            case Type.SlightSmile:
-                bSlightSmile = true;
-                break;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * 4);
         }
     }
 }
