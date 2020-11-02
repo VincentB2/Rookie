@@ -17,8 +17,8 @@ class Emoji : MonoBehaviour
     // Look At
     GameObject player;
     Transform target;
-    Vector3 targetPos;
     Vector3 thisPos;
+    Vector3 targetPos;
     float angle;
     void Awake()
     {
@@ -32,8 +32,8 @@ class Emoji : MonoBehaviour
     {
         if (target)
         {
-            targetPos = target.position;
             thisPos = transform.position;
+            targetPos = target.position;
             targetPos.x = targetPos.x - thisPos.x;
             targetPos.y = targetPos.y - thisPos.y;
             angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
