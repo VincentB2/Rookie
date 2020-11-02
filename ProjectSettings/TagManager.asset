@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy01
+=======
+  - Emoji
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
