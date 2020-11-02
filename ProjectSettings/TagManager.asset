@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+<<<<<<< Updated upstream
+  - Emoji
+=======
+  - Enemy01
+  - Spawn01
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
