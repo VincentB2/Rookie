@@ -19,9 +19,17 @@ public class MovementPlayer : MonoBehaviour
     public float cadence;
     public GameObject bullet;
 
+    private Vector3 actualPos;
+    private Vector3 targetPos;
+    private bool recul = false;
+    private float reculPower;
+    float timeRecul = 0;
+    float reculDistance;
+
     // ------------------------------- MOVE
     public float speed;
     private Rigidbody2D rb;
+    private bool canDash = true;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +54,35 @@ public class MovementPlayer : MonoBehaviour
         if (Input.GetMouseButton(0) && canFire)
         {
             StartCoroutine("Fire");
+
+            actualPos = transform.position;
+            
+
+            if (weapon == Weapon.MITRAILLETTE)
+            {
+                reculPower = 0.005f;
+                reculDistance = 0.2f;
+                targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
+                recul = true;
+            }
+            if (weapon == Weapon.SHOTGUN)
+            {
+                reculPower = 0.1f;
+                reculDistance = 0.03f;
+                targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
+                recul = true;
+            }
         }
+
+        if (recul)
+        { 
+                Recul(reculPower, actualPos, targetPos, reculDistance);
+
+        }
+
+
+
+
     }
 
     private void FixedUpdate()
@@ -61,9 +97,11 @@ public class MovementPlayer : MonoBehaviour
 
     IEnumerator Dash()
     {
+        canDash = false;
         speed *= 3;
         yield return new WaitForSeconds(0.3f);
         speed /= 3;
+        //yield return new
         
     }
 
@@ -102,7 +140,10 @@ public class MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bullet, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * 1000, ForceMode2D.Force);
 
-            rb.AddForce(-direction * 10, ForceMode2D.Force);
+            //rb.AddForce(-direction * 10, ForceMode2D.Force);
+            //Vector3 actualPos = transform.position;
+            //Vector3 targetPos = transform.position - new Vector3(direction.x, direction.y);
+            //transform.position = Vector3.Lerp(actualPos, targetPos, Time.deltaTime);
 
             yield return new WaitForSeconds(cadence * 0.1f);
             canFire = true;
@@ -138,10 +179,28 @@ public class MovementPlayer : MonoBehaviour
             GameObject newBullet2 = Instantiate(bullet, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * 30, ForceMode2D.Impulse);
 
-            rb.AddForce(-direction * 50, ForceMode2D.Force);
+            //Vector3 actualPos = transform.position;
+            //Vector3 targetPos = transform.position - (new Vector3(direction.x, direction.y) *10);
+            //transform.position = Vector3.Lerp(actualPos, targetPos, Time.deltaTime);
+            //rb.AddForce(-direction * 50, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadence * 0.5f);
             canFire = true;
         }
+    }
+
+    void Recul (float puissance, Vector3 actualPos, Vector3 targetPos, float reculDistance)
+    {
+        if(timeRecul < 1)
+        {
+            transform.position = Vector3.Lerp(actualPos, targetPos, timeRecul);
+            timeRecul += reculDistance;
+        }
+        else
+        {
+            timeRecul = 0;
+            recul = false;
+        }
+        
     }
 }
