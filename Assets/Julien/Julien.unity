@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 360410606}
   - component: {fileID: 360410605}
   m_Layer: 5
-  m_Name: MenuButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,7 +798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b473b6aa58b53a4fa72033b8e76a684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
+  isGameMenued: 0
+  isGamePaused: 0
 --- !u!1 &1219807665
 GameObject:
   m_ObjectHideFlags: 0
