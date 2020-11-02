@@ -91,16 +91,18 @@ public class MovementPlayer : MonoBehaviour
         {
             canFire = false;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = mousePos - transform.position;
-            direction = direction.normalized;
-            direction *= transform.localScale.x / (2 * transform.localScale.x);
+            Vector2 direction1 = mousePos - transform.position;
+            direction1 = direction.normalized;
+            direction1 *= transform.localScale.x / (2 * transform.localScale.x);
 
             Vector2 cellScreenPosition = transform.position;
 
-            Vector2 bulletPos = cellScreenPosition + direction;
+            Vector2 bulletPos = cellScreenPosition + direction1;
 
             GameObject newBullet = Instantiate(bullet, bulletPos, transform.rotation);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(direction * 30, ForceMode2D.Impulse);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * 1000, ForceMode2D.Force);
+
+            rb.AddForce(-direction * 10, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadence * 0.1f);
             canFire = true;
@@ -135,6 +137,8 @@ public class MovementPlayer : MonoBehaviour
 
             GameObject newBullet2 = Instantiate(bullet, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * 30, ForceMode2D.Impulse);
+
+            rb.AddForce(-direction * 50, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadence * 0.5f);
             canFire = true;
