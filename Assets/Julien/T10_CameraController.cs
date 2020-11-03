@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-class CameraController : MonoBehaviour
+class T10_CameraController : MonoBehaviour
 {
-    UI ui;
+    T10_UI ui;
     // Camera
     Camera camera;
     Transform target;
@@ -11,7 +11,7 @@ class CameraController : MonoBehaviour
     public float smoothInGame = .1F;
     void Awake()
     {
-        ui = GameObject.Find("UI").GetComponent<UI>();
+        ui = GameObject.Find("UI").GetComponent<T10_UI>();
         // Camera
         camera = GetComponent<Camera>();
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();

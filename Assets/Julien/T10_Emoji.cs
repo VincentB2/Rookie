@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-class Emoji : MonoBehaviour
+class T10_Emoji : MonoBehaviour
 {
     public enum Type
     {
