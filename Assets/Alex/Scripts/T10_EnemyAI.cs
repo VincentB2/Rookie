@@ -14,6 +14,12 @@ public class T10_EnemyAI : MonoBehaviour
     Vector3 thisPos;
     Vector3 targetPos;
     float angle;
+    // EnemyShoot
+    [Header("EnemyShoot")]
+    public GameObject enemyShootProjectile;
+    public float enemyShootForce = 1,
+        enemyShootReactivity = 5,
+        enemyShootSpeed = 1;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -24,12 +30,6 @@ public class T10_EnemyAI : MonoBehaviour
     }
     void Update()
     {
-        float step = speedEnemy * Time.deltaTime;
-        if ((player.transform.position - transform.position).magnitude <= rangeEnemy)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
-        }
-        EnemyDeath();
         // Julien
         if (gameObject.tag == "EnemyShoot")
         {
@@ -41,9 +41,25 @@ public class T10_EnemyAI : MonoBehaviour
                 targetPos.x = targetPos.x - thisPos.x;
                 targetPos.y = targetPos.y - thisPos.y;
                 angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * 4);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
+                transform.position = Vector2.MoveTowards(transform.position, target.position, enemyShootSpeed * Time.deltaTime);
+            }
+            // EnemyShoot
+            if (enemyShootProjectile)
+            {
+                GameObject projectile = Instantiate(enemyShootProjectile, transform.position, transform.rotation);
             }
         }
+        else
+        {
+            // Alex
+            float step = speedEnemy * Time.deltaTime;
+            if ((player.transform.position - transform.position).magnitude <= rangeEnemy)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
+            }
+        }
+        EnemyDeath();
     }
     void EnemyDeath()
     {
