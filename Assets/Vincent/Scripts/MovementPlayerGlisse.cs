@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovementPlayer : MonoBehaviour
+public class MovementPlayerGlisse : MonoBehaviour
 {
 
     // ------------------------------- FIRE
@@ -28,6 +28,7 @@ public class MovementPlayer : MonoBehaviour
     float reculDistance;
 
     // ------------------------------- MOVE
+    private bool canMove = true;
     public float speed;
     private Rigidbody2D rb;
     private bool canDash = true;
@@ -41,14 +42,14 @@ public class MovementPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            if(rb.velocity.magnitude != 0)
-            {
-                Debug.Log("dash");
-                StartCoroutine("Dash");
-            }
-        }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    if(rb.velocity.magnitude != 0)
+        //    {
+        //        Debug.Log("dash");
+        //        StartCoroutine("Dash");
+        //    }
+        //}
 
         Curseur();
 
@@ -59,27 +60,27 @@ public class MovementPlayer : MonoBehaviour
             actualPos = transform.position;
             
 
-            if (weapon == Weapon.MITRAILLETTE)
-            {
-                reculPower = 0.005f;
-                reculDistance = 0.2f;
-                targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
-                recul = true;
-            }
-            if (weapon == Weapon.SHOTGUN)
-            {
-                reculPower = 0.1f;
-                reculDistance = 0.03f;
-                targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
-                recul = true;
-            }
+            //if (weapon == Weapon.MITRAILLETTE)
+            //{
+            //    reculPower = 0.005f;
+            //    reculDistance = 0.2f;
+            //    targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
+            //    recul = true;
+            //}
+            //if (weapon == Weapon.SHOTGUN)
+            //{
+            //    reculPower = 0.1f;
+            //    reculDistance = 0.03f;
+            //    targetPos = transform.position - (new Vector3(direction.x, direction.y) * reculPower);
+            //    recul = true;
+            //}
         }
 
-        if (recul)
-        { 
-                Recul(reculPower, actualPos, targetPos, reculDistance);
+        //if (recul)
+        //{ 
+        //        Recul(reculPower, actualPos, targetPos, reculDistance);
 
-        }
+        //}
 
 
 
@@ -88,11 +89,15 @@ public class MovementPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
-        float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
+        if (canMove)
+        {
+            float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+            float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
 
-        rb.velocity = new Vector2(x, y) * speed;
-        //rb.AddForce(new Vector2(x, y) * speed); ------------------------------------------------------------- GLISSADE
+
+            rb.AddForce(new Vector2(x, y) * speed);
+            rb.AddForce(-rb.velocity * 2);
+        }
 
     }
 
@@ -100,9 +105,19 @@ public class MovementPlayer : MonoBehaviour
     IEnumerator Dash()
     {
         canDash = false;
-        speed *= 3;
-        yield return new WaitForSeconds(0.3f);
-        speed /= 3;
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            rb.AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
+        }
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            rb.AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
+        }
+        yield return new WaitForSeconds(0.18f);
+        rb.velocity = Vector2.zero;
+        canMove = true;
         //yield return new
         
     }
@@ -142,7 +157,7 @@ public class MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bullet, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * 1000, ForceMode2D.Force);
 
-            //rb.AddForce(-direction * 10, ForceMode2D.Force);
+            rb.AddForce(-direction * 1, ForceMode2D.Force);
             //Vector3 actualPos = transform.position;
             //Vector3 targetPos = transform.position - new Vector3(direction.x, direction.y);
             //transform.position = Vector3.Lerp(actualPos, targetPos, Time.deltaTime);
@@ -184,25 +199,25 @@ public class MovementPlayer : MonoBehaviour
             //Vector3 actualPos = transform.position;
             //Vector3 targetPos = transform.position - (new Vector3(direction.x, direction.y) *10);
             //transform.position = Vector3.Lerp(actualPos, targetPos, Time.deltaTime);
-            //rb.AddForce(-direction * 50, ForceMode2D.Force);
+            rb.AddForce(-direction * 10, ForceMode2D.Force);
 
             yield return new WaitForSeconds( cadenceSHOTGUN.Value / cadenceGenerale.Value);
             canFire = true;
         }
     }
 
-    void Recul (float puissance, Vector3 actualPos, Vector3 targetPos, float reculDistance)
-    {
-        if(timeRecul < 1)
-        {
-            transform.position = Vector3.Lerp(actualPos, targetPos, timeRecul);
-            timeRecul += reculDistance;
-        }
-        else
-        {
-            timeRecul = 0;
-            recul = false;
-        }
+    //void Recul (float puissance, Vector3 actualPos, Vector3 targetPos, float reculDistance)
+    //{
+    //    if(timeRecul < 1)
+    //    {
+    //        transform.position = Vector3.Lerp(actualPos, targetPos, timeRecul);
+    //        timeRecul += reculDistance;
+    //    }
+    //    else
+    //    {
+    //        timeRecul = 0;
+    //        recul = false;
+    //    }
         
-    }
+    //}
 }
