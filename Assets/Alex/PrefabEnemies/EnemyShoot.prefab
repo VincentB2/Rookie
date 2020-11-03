@@ -55,6 +55,7 @@ MonoBehaviour:
   enemyShootForce: 1
   enemyShootReactivity: 4
   enemyShootSpeed: 0.2
+  enemyShootProjectileSpeed: 5
 --- !u!212 &6626328248050442192
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
 --- !u!50 &16301713051904740
 Rigidbody2D:
@@ -152,4 +153,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 3

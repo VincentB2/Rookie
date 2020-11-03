@@ -19,7 +19,10 @@ public class T10_EnemyAI : MonoBehaviour
     public GameObject enemyShootProjectile;
     public float enemyShootForce = 1,
         enemyShootReactivity = 5,
-        enemyShootSpeed = 1;
+        enemyShootSpeed = 1,
+        enemyShootProjectileSpeed = 5,
+        enemyShootFrequency = .5F;
+    float timer;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -47,7 +50,13 @@ public class T10_EnemyAI : MonoBehaviour
             // EnemyShoot
             if (enemyShootProjectile)
             {
-                GameObject projectile = Instantiate(enemyShootProjectile, transform.position, transform.rotation);
+                timer -= Time.deltaTime;
+                if (timer < 0)
+                {
+                    GameObject projectile = Instantiate(enemyShootProjectile, transform.position, transform.rotation);
+                    projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyShootProjectileSpeed * 100);
+                    timer = enemyShootFrequency;
+                }
             }
         }
         else
