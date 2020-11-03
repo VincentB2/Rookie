@@ -13,7 +13,7 @@ public class T10_Traps : MonoBehaviour
     public TrapType trap;
     public float timeBeforeArrowValue = 1.0f;
     private float timeBeforeArrow;
-    public float arrowSpeed = 50.0f;
+    public float arrowSpeed = 150.0f;
     public GameObject[] arrowSpawns;
     public GameObject arrow;
     int randomSpawn;
@@ -32,7 +32,6 @@ public class T10_Traps : MonoBehaviour
             {
                 GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
                 iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -arrowSpeed));
-                //iceArrow.GetComponent<Rigidbody2D>().velocity = iceArrow.transform.forward * iceArrow.GetComponent<ArrowScript>().arrowSpeed;
             }
             else if (trap == TrapType.UP)
             {
