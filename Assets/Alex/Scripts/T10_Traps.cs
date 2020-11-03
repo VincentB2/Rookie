@@ -17,6 +17,8 @@ public class T10_Traps : MonoBehaviour
     public GameObject[] arrowSpawns;
     public GameObject arrow;
     int randomSpawn;
+
+    Quaternion quat;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,22 +33,27 @@ public class T10_Traps : MonoBehaviour
             if (trap == TrapType.DOWN)
             {
                 GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                //quat =
                 iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -arrowSpeed));
+                iceArrow.transform.eulerAngles = new Vector3(0f, 0f, 180f);
             }
             else if (trap == TrapType.UP)
             {
-                GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
                 iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, arrowSpeed));
+                iceArrow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
             }
             else if (trap == TrapType.LEFT)
             {
-                GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
                 iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(-arrowSpeed, 0));
+                iceArrow.transform.eulerAngles = new Vector3(0f, 0f, 90f);
             }
             else if (trap == TrapType.RIGHT)
             {
-                GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
                 iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowSpeed, 0));
+                iceArrow.transform.eulerAngles = new Vector3(0f, 0f, -90f);
             }
             timeBeforeArrow = timeBeforeArrowValue;
         }
