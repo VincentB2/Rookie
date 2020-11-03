@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9001528233806316539}
   m_Layer: 0
   m_Name: EnemySmall
-  m_TagString: EnemySmall
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,10 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  enemyType: 1
   speedEnemy: 3
   rangeEnemy: 10
   lifeEnemy: 0.5
   damageEnemy: 1
+  enemyShootProjectile: {fileID: 0}
+  enemyShootForce: 1
+  enemyShootReactivity: 5
+  enemyShootProjectileSpeed: 5
+  enemyShootFrequency: 0.5
 --- !u!212 &7694167775893440033
 SpriteRenderer:
   m_ObjectHideFlags: 0

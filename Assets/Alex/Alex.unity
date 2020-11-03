@@ -1078,13 +1078,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 255802627530620208, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
+      propertyPath: rangeEnemy
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 255802627530620208, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
+      propertyPath: rangeEnemyShoot
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 255802627530620209, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 255802627530620209, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.92
       objectReference: {fileID: 0}
     - target: {fileID: 255802627530620209, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
       propertyPath: m_LocalPosition.z

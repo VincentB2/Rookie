@@ -11,6 +11,7 @@ TagManager:
   - EnemyBig
   - EnemyShoot
   - EnemyShootProjectile
+  - Enemy
   layers:
   - Default
   - TransparentFX
