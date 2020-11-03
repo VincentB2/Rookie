@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ccd96e9669eb14b8bdc80d5da3a4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amplitudeInMenu: 2
   smoothInMenu: 0.1
   smoothInGame: 0.1
 --- !u!1 &579398990
