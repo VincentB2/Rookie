@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 class Emoji : MonoBehaviour
 {
     public enum Type
