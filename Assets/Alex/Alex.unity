@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b48b19a49ac09249b0bd958748993a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trap: 0
+  trap: 2
   timeBeforeArrowValue: 0.5
   arrowSpeed: 100
   arrowSpawns:
