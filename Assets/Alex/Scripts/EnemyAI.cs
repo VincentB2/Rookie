@@ -5,39 +5,36 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
 
-    [Header("Speed")]
-    public float speedEnemy1 = 1.5f;
-    public float speedEnemy2 = 3.0f;
-    public float speedEnemy3 = 0.5f;
-    [Header("Range")]
-    public float rangeEnemy1 = 4.0f;
-    public float rangeEnemy2 = 4.0f;
-    public float rangeEnemy3 = 4.0f;
-    [Header("HP")]
-    public float lifeEnemy1 = 1.5f;
-    public float lifeEnemy2 = 3.0f;
-    public float lifeEnemy3 = 0.5f;
-    // Start is called before the first frame update
+    [Header("EnemyCarac")]
+    public float speedEnemy = 1.5f;
+    public float rangeEnemy = 4.0f;
+    public float lifeEnemy = 1.5f;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        float step = speedEnemy1 * Time.deltaTime;
-        if (Input.GetButtonDown("Jump")) 
-        {
-            Debug.Log("Hello Bitch");
-            FindObjectOfType<AudioManager>().Play("win");
-        }
-        if((player.transform.position - transform.position).magnitude <= rangeEnemy1) 
+        float step = speedEnemy * Time.deltaTime;
+
+        if((player.transform.position - transform.position).magnitude <= rangeEnemy) 
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
         }
         
+    }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerFight>().playerHP -= 1;
+            Destroy(gameObject);
+        }
     }
 }
