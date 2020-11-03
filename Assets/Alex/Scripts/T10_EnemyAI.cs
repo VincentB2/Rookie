@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class T10_EnemyAI : MonoBehaviour
 {
     public GameObject player;
 
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerFight>().playerHP -= damageEnemy;
+            player.GetComponent<T10_PlayerFight>().playerHP -= damageEnemy;
             Destroy(gameObject);
         }
     }

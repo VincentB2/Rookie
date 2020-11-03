@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawn : MonoBehaviour
+public class T10_EnemySpawn : MonoBehaviour
 {
     private GameObject player;
     public float rangeSpawn = 10.0f;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Traps : MonoBehaviour
+public class T10_Traps : MonoBehaviour
 {
     public enum TrapType{
         DOWN,
@@ -31,20 +31,23 @@ public class Traps : MonoBehaviour
             if (trap == TrapType.DOWN)
             {
                 GameObject iceArrow = Instantiate(arrow, arrowSpawns[randomSpawn].transform.position, transform.rotation);
-                iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowSpeed, 0));
+                iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -arrowSpeed));
                 //iceArrow.GetComponent<Rigidbody2D>().velocity = iceArrow.transform.forward * iceArrow.GetComponent<ArrowScript>().arrowSpeed;
             }
             else if (trap == TrapType.UP)
             {
                 GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, arrowSpeed));
             }
             else if (trap == TrapType.LEFT)
             {
                 GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(-arrowSpeed, 0));
             }
             else if (trap == TrapType.RIGHT)
             {
                 GameObject iceArrow = Instantiate(arrowSpawns[randomSpawn], arrowSpawns[randomSpawn].transform.position, transform.rotation);
+                iceArrow.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowSpeed, 0));
             }
             timeBeforeArrow = timeBeforeArrowValue;
         }

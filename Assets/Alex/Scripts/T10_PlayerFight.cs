@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerFight : MonoBehaviour
+public class T10_PlayerFight : MonoBehaviour
 {
     public int playerHPValue = 3;
     public int playerHP = 0;

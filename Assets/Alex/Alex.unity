@@ -330,8 +330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f13d2bfc22a943a2d0310aa1497c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   rangeSpawn: 10
   timeBeforeSpawnValue: 1
+  timeBeforeSpawn: 0
   enemyType: {fileID: 8661093356609848006, guid: 7337f9dc72cbebb43995cdaebe12dc62, type: 3}
 --- !u!212 &753004129
 SpriteRenderer:
@@ -392,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753004127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.91, y: 4.74, z: 0}
+  m_LocalPosition: {x: -8.59, y: 4.68, z: 0}
   m_LocalScale: {x: 3.3019135, y: 3.3019135, z: 3.3019135}
   m_Children: []
   m_Father: {fileID: 0}
@@ -428,8 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f13d2bfc22a943a2d0310aa1497c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   rangeSpawn: 2
   timeBeforeSpawnValue: 2
+  timeBeforeSpawn: 0
   enemyType: {fileID: 255802627530620210, guid: 17a3054922e91364b991bbc3759a2650, type: 3}
 --- !u!212 &1084367575
 SpriteRenderer:
@@ -490,7 +494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084367573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.93, y: 4.66, z: 0}
+  m_LocalPosition: {x: 8.55, y: 4.69, z: 0}
   m_LocalScale: {x: 3.3019135, y: 3.3019135, z: 3.3019135}
   m_Children: []
   m_Father: {fileID: 0}
@@ -707,7 +711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349535670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.16, y: 1.08, z: 0}
+  m_LocalPosition: {x: -4.57, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1653048291}
@@ -737,7 +741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531052687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.16, y: -1.06, z: 0}
+  m_LocalPosition: {x: -4.5700006, y: -1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1653048291}
@@ -771,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573189369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.68, y: -2.14, z: 0}
   m_LocalScale: {x: 6.167162, y: 6.167162, z: 6.167162}
   m_Children: []
   m_Father: {fileID: 0}
@@ -913,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636726543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.19, y: 0.05, z: 0}
+  m_LocalPosition: {x: -4.6000004, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1653048291}
@@ -949,8 +953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trap: 0
-  timeBeforeArrowValue: 2
-  arrowSpeed: 50
+  timeBeforeArrowValue: 0.5
+  arrowSpeed: 100
   arrowSpawns:
   - {fileID: 1349535670}
   - {fileID: 1636726543}
@@ -1003,8 +1007,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f13d2bfc22a943a2d0310aa1497c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   rangeSpawn: 10
   timeBeforeSpawnValue: 4
+  timeBeforeSpawn: 0
   enemyType: {fileID: 6757362009338164285, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
 --- !u!212 &1875056251
 SpriteRenderer:
@@ -1065,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875056249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 4.75, z: 0}
+  m_LocalPosition: {x: 0, y: 4.66, z: 0}
   m_LocalScale: {x: 3.3019135, y: 3.3019135, z: 3.3019135}
   m_Children: []
   m_Father: {fileID: 0}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowScript : MonoBehaviour
+public class T10_ArrowScript : MonoBehaviour
 {
     GameObject player;
     
@@ -12,7 +12,6 @@ public class ArrowScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -22,7 +21,7 @@ public class ArrowScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player")) 
         {
-            player.GetComponent<PlayerFight>().playerHP -= 1;
+            player.GetComponent<T10_PlayerFight>().playerHP -= 1;
             Destroy(gameObject);
         }
         else 

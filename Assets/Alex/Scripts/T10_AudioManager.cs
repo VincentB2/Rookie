@@ -3,10 +3,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioManager : MonoBehaviour
+public class T10_AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
-    public static AudioManager instance;
+    public T10_Sound[] sounds;
+    public static T10_AudioManager instance;
 
 
     void Awake()
@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
 
-        foreach (Sound s in sounds)
+        foreach (T10_Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        T10_Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound : " + name + "not found!");
@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
     }
     public void StopPlaying(string sound)
     {
-        Sound s = Array.Find(sounds, item => item.name == sound);
+        T10_Sound s = Array.Find(sounds, item => item.name == sound);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
