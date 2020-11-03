@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-class UI : MonoBehaviour
+class T10_UI : MonoBehaviour
 {
     public bool isGameMenued, isGamePaused;
     public float timeScale;
