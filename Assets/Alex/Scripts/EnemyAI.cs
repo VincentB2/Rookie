@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     public float speedEnemy = 1.5f;
     public float rangeEnemy = 4.0f;
     public float lifeEnemy = 1.5f;
+    public int damageEnemy = 1;
 
     void Start()
     {
@@ -26,15 +27,27 @@ public class EnemyAI : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
         }
-        
+
+        EnemyDeath();
     }
+
+    void EnemyDeath()
+    {
+        if (lifeEnemy <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     public void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerFight>().playerHP -= 1;
+            player.GetComponent<PlayerFight>().playerHP -= damageEnemy;
             Destroy(gameObject);
         }
     }
+
+    
 }

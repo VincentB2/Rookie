@@ -7,12 +7,13 @@ public class EnemySpawn : MonoBehaviour
     private GameObject player;
     public float rangeSpawn = 10.0f;
     public float timeBeforeSpawnValue = 2.0f;
-    private float timeBeforeSpawn = 0.0f;
+    private float timeBeforeSpawn;
     public GameObject enemyType;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        timeBeforeSpawn = timeBeforeSpawnValue;
     }
 
     // Update is called once per frame

@@ -42,23 +42,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        s.source.pitch = s.pitch;
-        if (name == "Theme")
-        {
-            s.volume = 0.01f;
-        }
-        else if (name == "OpenDoor")
-        {
-            s.volume = 0.65f;
-        }
-        else if (name == "Jump1" || name == "Jump2" || name == "Jump3" || name == "Jump4")
-        {
-            s.volume = 0.05f;
-        }
-        else
-        {
-            s.volume = 0.2f;
-        }
         s.source.volume = s.volume;
         s.source.Play();
     }

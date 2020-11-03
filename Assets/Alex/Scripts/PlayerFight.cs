@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerFight : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerFight : MonoBehaviour
         Debug.Log(playerHP);
         if(playerHP <= 0) 
         {
-            Debug.Log("vous êtes mort");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
