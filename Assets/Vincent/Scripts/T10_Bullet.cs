@@ -7,7 +7,7 @@ public class T10_Bullet : MonoBehaviour
 
 {
     GameObject player;
-    public float damageBullet = 1f;
+    public float damageBullet = 2f;
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -15,6 +15,10 @@ public class T10_Bullet : MonoBehaviour
         {
             damageBullet = 1f;
         }else if(player.GetComponent<T10_MovementPlayer>().weapon == T10_MovementPlayer.Weapon.SHOTGUN)
+        {
+            damageBullet = 2f;
+        }
+        else 
         {
             damageBullet = 2f;
         }
