@@ -29,10 +29,7 @@ public class T10_PlayerFight : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            FindObjectOfType<T10_AudioManager>().Play("click");
-        }
+
     }
     public void TakeDamage(float damage)
     {
