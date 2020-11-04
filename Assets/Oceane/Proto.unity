@@ -1158,7 +1158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6757362009338164287, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
       propertyPath: rangeEnemy
-      value: 2
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757362009338164287, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+      propertyPath: speedEnemy
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6989819555900966090, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
       propertyPath: m_CollisionDetection

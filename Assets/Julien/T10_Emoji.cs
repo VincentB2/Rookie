@@ -59,10 +59,6 @@ class T10_Emoji : MonoBehaviour
             {
                 player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.RAGE;
             }
-            else if (emojiType == Type.SmilingImp)
-            {
-                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.SMILINGIMP;
-            }
             else if (emojiType == Type.Scream)
             {
                 player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.SCREAM;

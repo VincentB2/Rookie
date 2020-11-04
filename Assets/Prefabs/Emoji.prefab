@@ -50,12 +50,11 @@ MonoBehaviour:
   emojiType: 0
   emojiSprite:
   - {fileID: 21300000, guid: ce68e25ef4347a444adfbdb3ed0cf552, type: 3}
-  - {fileID: 21300000, guid: 49b7d2fb753ffa64cadd4684e0189b5b, type: 3}
+  - {fileID: 21300000, guid: 664b223c2056db24c8fee18b0623b1e4, type: 3}
   - {fileID: 21300000, guid: d1dc01608ef436d4282b127cea7cb938, type: 3}
   - {fileID: 21300000, guid: b264ff89757b55d4c8856fa2d1f9fe4e, type: 3}
-  - {fileID: 21300000, guid: d0242644139c71048bf91096df9e422b, type: 3}
   - {fileID: 21300000, guid: 77c7a1f9d109f3f4385a09037bbdbea7, type: 3}
-  - {fileID: 21300000, guid: 664b223c2056db24c8fee18b0623b1e4, type: 3}
+  - {fileID: 21300000, guid: d0242644139c71048bf91096df9e422b, type: 3}
 --- !u!212 &471946193021546035
 SpriteRenderer:
   m_ObjectHideFlags: 0
