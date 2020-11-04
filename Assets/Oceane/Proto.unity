@@ -929,7 +929,11 @@ MonoBehaviour:
   canvas: {fileID: 191911863}
   Arrow: {fileID: 107873723}
   weapon: 0
-  bullet: {fileID: 7380909107784362838, guid: 122b9954e5814cd429fe2f1a227a5874, type: 3}
+  cadenceGenerale: {fileID: 11400000, guid: 8f37a80314d2bfa41ae4cc8bba4238e9, type: 2}
+  cadenceDEFAULT: {fileID: 11400000, guid: 38c3bbbe22d88144b88a67ca82e8e1f7, type: 2}
+  reculGlaceDEFAULT: {fileID: 11400000, guid: 7abf4ecd8ccef914aa26e8bacdd83c8b, type: 2}
+  PuissReculTerreDEFAULT: {fileID: 11400000, guid: 90ae1366e12f4234c86133d5577bf333, type: 2}
+  DistReculTerreDEFAULT: {fileID: 11400000, guid: 96bd1ba413d41534a9f0baa3f1162fa2, type: 2}
   cadenceMITRAILLETTE: {fileID: 11400000, guid: 327932c4928439a4bae542a1ee87f08a, type: 2}
   reculGlaceMITRAILLETTE: {fileID: 11400000, guid: 012535be7b6394e419767ffe5a4c8639, type: 2}
   PuissReculTerreMITRAILLETTE: {fileID: 11400000, guid: 427aaa65a31e1c74aab704e76ac6ad1f, type: 2}
@@ -938,12 +942,15 @@ MonoBehaviour:
   reculGlaceSHOTGUN: {fileID: 11400000, guid: 6f89043289f444e43afa7b2a435895aa, type: 2}
   DistReculTerreSHOTGUN: {fileID: 11400000, guid: 8a5680a520e63ca4fb74609f2624a22d, type: 2}
   PuissReculTerreSHOTGUN: {fileID: 11400000, guid: ca980db2e78c84e45b5ca70a59144af1, type: 2}
-  cadenceGenerale: {fileID: 11400000, guid: 8f37a80314d2bfa41ae4cc8bba4238e9, type: 2}
-  speed: {fileID: 11400000, guid: 5218758f82d12f44a977158f3d846ecc, type: 2}
+  speedBullets: {fileID: 11400000, guid: 3992cba79566e28458b511eaa3292caa, type: 2}
+  bulletInUse: {fileID: 7380909107784362838, guid: 122b9954e5814cd429fe2f1a227a5874, type: 3}
+  Speed: {fileID: 11400000, guid: 5218758f82d12f44a977158f3d846ecc, type: 2}
   isGlace: 0
   player:
     serializedVersion: 2
     m_Bits: 512
+  smiley: 0
+  SpeedIncrease: {fileID: 11400000, guid: 8a8d44de3d90d0c4eaeb6ccad2c31d46, type: 2}
 --- !u!50 &575507882
 Rigidbody2D:
   serializedVersion: 4
