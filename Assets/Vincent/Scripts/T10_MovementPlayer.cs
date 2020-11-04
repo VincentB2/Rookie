@@ -93,6 +93,7 @@ public class T10_MovementPlayer : MonoBehaviour
                 bulletInUse.GetComponent<T10_Bullet>().isGlace = false;
             }
             WhichSmiley(smiley);
+            StartCoroutine("ResetFireAfterNewSmiley");
         }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, ~player);;
@@ -126,6 +127,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
             if (Input.GetMouseButton(0) && canFire)
             {
+                canFire = false;
                 StartCoroutine("Fire");
 
                 actualPos = transform.position;
@@ -226,7 +228,6 @@ public class T10_MovementPlayer : MonoBehaviour
     {
         if (weapon == Weapon.DEFAULT)
         {
-            canFire = false;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
@@ -240,12 +241,10 @@ public class T10_MovementPlayer : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
-            canFire = true;
         }
 
-        if (weapon == Weapon.MITRAILLETTE)
+        else if (weapon == Weapon.MITRAILLETTE)
         {
-            canFire = false;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
@@ -259,12 +258,10 @@ public class T10_MovementPlayer : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
-            canFire = true;
         }
 
-        if (weapon == Weapon.SHOTGUN)
+         else if (weapon == Weapon.SHOTGUN)
         {
-            canFire = false;
             Vector2 cellScreenPosition = transform.position;
             Vector2 direction1 = Camera.main.ScreenToWorldPoint(Arrow.transform.position) - transform.position;
             direction1 = direction1.normalized;
@@ -293,8 +290,8 @@ public class T10_MovementPlayer : MonoBehaviour
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * speedBullets.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds( cadenceSHOTGUN.Value / cadenceGenerale.Value);
-            canFire = true;
         }
+        canFire = true;
     }
 
     IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
@@ -309,9 +306,10 @@ public class T10_MovementPlayer : MonoBehaviour
     // ----------------------------------------------------------------
     IEnumerator FireGlace()
     {
+        canFire = false;
         if (weapon == Weapon.DEFAULT)
         {
-            canFire = false;
+            
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
@@ -327,11 +325,11 @@ public class T10_MovementPlayer : MonoBehaviour
             rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
-            canFire = true;
+            
         }
-        if (weapon == Weapon.MITRAILLETTE)
+        else if (weapon == Weapon.MITRAILLETTE)
         {
-            canFire = false;
+            
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
@@ -347,12 +345,12 @@ public class T10_MovementPlayer : MonoBehaviour
             rb.AddForce(-direction * reculGlaceMITRAILLETTE.Value, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
-            canFire = true;
+            
         }
 
         if (weapon == Weapon.SHOTGUN)
         {
-            canFire = false;
+            
             Vector2 cellScreenPosition = transform.position;
             Vector2 direction1 = Camera.main.ScreenToWorldPoint(Arrow.transform.position) - transform.position;
             direction1 = direction1.normalized;
@@ -383,8 +381,9 @@ public class T10_MovementPlayer : MonoBehaviour
             rb.AddForce(-direction * reculGlaceSHOTGUN.Value, ForceMode2D.Force);
 
             yield return new WaitForSeconds(cadenceSHOTGUN.Value / cadenceGenerale.Value);
-            canFire = true;
+            
         }
+        canFire = true;
     }
 
     private void WhichSmiley(SMILEY smiley)
@@ -438,6 +437,13 @@ public class T10_MovementPlayer : MonoBehaviour
 
         }
 
+    }
+
+    IEnumerator ResetFireAfterNewSmiley()
+    {
+        StopCoroutine("Fire");
+        yield return new WaitForSeconds(0.1f);
+        canFire = true;
     }
 
 
