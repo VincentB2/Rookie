@@ -122,8 +122,9 @@ public class T10_MovementPlayer : MonoBehaviour
                     StartCoroutine("Dash");
                 }
             }
-            
-            Curseur();
+
+            // Curseur();
+            FaceMouse();
 
             if (Input.GetMouseButton(0) && canFire)
             {
@@ -155,7 +156,8 @@ public class T10_MovementPlayer : MonoBehaviour
 
         if (isGlace)
         {
-            Curseur();
+            //Curseur();
+            FaceMouse();
 
             if (Input.GetMouseButton(0) && canFire)
             {
@@ -263,18 +265,18 @@ public class T10_MovementPlayer : MonoBehaviour
          else if (weapon == Weapon.SHOTGUN)
         {
             Vector2 cellScreenPosition = transform.position;
-            Vector2 direction1 = Camera.main.ScreenToWorldPoint(Arrow.transform.position) - transform.position;
+            Vector2 direction1 = Arrow.transform.position - transform.position;
             direction1 = direction1.normalized;
             direction1 *= 0.5f;
             
             Vector2 bulletPos1 = cellScreenPosition + direction1;
 
-            Vector2 direction2 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(0).transform.position) - transform.position;
+            Vector2 direction2 = Arrow.transform.GetChild(0).transform.position - transform.position;
             direction2 = direction2.normalized;
             direction2 *= 0.5f;
             Vector2 bulletPos2 = cellScreenPosition + direction2;
 
-            Vector2 direction3 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(1).transform.position) - transform.position;
+            Vector2 direction3 = Arrow.transform.GetChild(1).transform.position - transform.position;
             direction3 = direction3.normalized;
             direction3 *= 0.5f;
 
@@ -322,7 +324,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
-            rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Force);
+            rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
             
@@ -342,7 +344,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
-            rb.AddForce(-direction * reculGlaceMITRAILLETTE.Value, ForceMode2D.Force);
+            rb.AddForce(-direction * reculGlaceMITRAILLETTE.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
             
@@ -352,18 +354,18 @@ public class T10_MovementPlayer : MonoBehaviour
         {
             
             Vector2 cellScreenPosition = transform.position;
-            Vector2 direction1 = Camera.main.ScreenToWorldPoint(Arrow.transform.position) - transform.position;
+            Vector2 direction1 = Arrow.transform.position - transform.position;
             direction1 = direction1.normalized;
             direction1 *= 0.5f;
 
             Vector2 bulletPos1 = cellScreenPosition + direction1;
 
-            Vector2 direction2 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(0).transform.position) - transform.position;
+            Vector2 direction2 = Arrow.transform.GetChild(0).transform.position - transform.position;
             direction2 = direction2.normalized;
             direction2 *= 0.5f;
             Vector2 bulletPos2 = cellScreenPosition + direction2;
 
-            Vector2 direction3 = Camera.main.ScreenToWorldPoint(Arrow.transform.GetChild(1).transform.position) - transform.position;
+            Vector2 direction3 = Arrow.transform.GetChild(1).transform.position - transform.position;
             direction3 = direction3.normalized;
             direction3 *= 0.5f;
 
@@ -378,7 +380,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet2 = Instantiate(bulletInUse, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * speedBullets.Value, ForceMode2D.Impulse);
 
-            rb.AddForce(-direction * reculGlaceSHOTGUN.Value, ForceMode2D.Force);
+            rb.AddForce(-direction * reculGlaceSHOTGUN.Value, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(cadenceSHOTGUN.Value / cadenceGenerale.Value);
             
@@ -446,5 +448,13 @@ public class T10_MovementPlayer : MonoBehaviour
         canFire = true;
     }
 
+
+    private void FaceMouse()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        direction = mousePos - transform.position;
+        direction = direction.normalized;
+        transform.up = direction;
+    }
 
 }
