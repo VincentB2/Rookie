@@ -7,12 +7,15 @@ public class T10_Bullet : MonoBehaviour
 
 {
     GameObject player;
+    T10_CameraController camControl;
     public float damageBullet = 2f;
     public bool isGlace = false;
-
+    public float shakeDur = 0.1f;
+    public float shakeAm = 1f;
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         if(player.GetComponent<T10_MovementPlayer>().weapon == T10_MovementPlayer.Weapon.MITRAILLETTE) 
         {
             damageBullet = 1f;
@@ -36,6 +39,7 @@ public class T10_Bullet : MonoBehaviour
         {
             T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
             scriptEnemy.lifeEnemy -= damageBullet;
+            camControl.ShakeCamera(shakeDur, shakeAm);
             Debug.Log(scriptEnemy.lifeEnemy);
             Destroy(gameObject);
             if (isGlace)

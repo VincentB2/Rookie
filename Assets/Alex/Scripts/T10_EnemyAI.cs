@@ -112,6 +112,7 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SlightSmile;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[5];
+
                     }
                 }
                 else if (enemyType == EnemyType.BIG)
