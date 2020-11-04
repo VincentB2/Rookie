@@ -24,25 +24,24 @@ public class T10_MovementPlayer : MonoBehaviour
     public FloatVariable cadenceDEFAULT;
     public FloatVariable reculGlaceDEFAULT;
     public FloatVariable PuissReculTerreDEFAULT;
-    public FloatVariable DistReculTerreDEFAULT;
+    public FloatVariable TimeReculTerreDEFAULT;
     // --------MITRAILLETTE
     public FloatVariable cadenceMITRAILLETTE;
     public FloatVariable reculGlaceMITRAILLETTE;
     public FloatVariable PuissReculTerreMITRAILLETTE;
-    public FloatVariable DistReculTerreMITRAILLETTE;
+    public FloatVariable TimeReculTerreMITRAILLETTE;
     // --------SHOTGUN
     public FloatVariable cadenceSHOTGUN;
     public FloatVariable reculGlaceSHOTGUN;
-    public FloatVariable DistReculTerreSHOTGUN;
+    public FloatVariable TimeReculTerreSHOTGUN;
     public FloatVariable PuissReculTerreSHOTGUN;
 
     // ---------------RECUL
     private Vector3 actualPos;
     private Vector3 targetPos;
-    private bool recul = false;
+    private bool isRecul = false;
     private float reculPower;
-    float timeRecul = 0;
-    float reculDistance;
+    float timeSave;
 
     // ---------------------BULLETS
     public FloatVariable speedBullets;
@@ -51,6 +50,7 @@ public class T10_MovementPlayer : MonoBehaviour
     public GameObject bulletInUse;
 
     // ------------------------------- MOVE
+    private bool canMove = true;
     public FloatVariable Speed;
     private Rigidbody2D rb;
     private bool canDash = true;
@@ -78,8 +78,6 @@ public class T10_MovementPlayer : MonoBehaviour
         smiley = SMILEY.SLIGHTSMILE;
         lastSmiley = smiley;
         WhichSmiley(smiley);
-        bullets = BULLETS.DEFAULT ;
-        weapon = Weapon.DEFAULT;
     }
 
     // Update is called once per frame
@@ -99,7 +97,7 @@ public class T10_MovementPlayer : MonoBehaviour
         {
             if (hit.transform.gameObject.layer == 8)
             {
-                timeRecul = 1;
+                //timeRecul = 1;
                 isGlace = true;
             }
 
@@ -129,37 +127,23 @@ public class T10_MovementPlayer : MonoBehaviour
 
                 actualPos = transform.position;
 
-                timeRecul = 0;
-
                 Vector3 dir = direction.normalized;
                 Vector3 vit = rb.velocity.normalized;
                 if (weapon == Weapon.DEFAULT)
                 {
-                    reculDistance = DistReculTerreDEFAULT.Value;
-                    reculPower = PuissReculTerreDEFAULT.Value;
-                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit) / 4);
-                    recul = true;
+                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
+                    StartCoroutine(Recul(targetPos, TimeReculTerreDEFAULT.Value, PuissReculTerreDEFAULT.Value));
                 }
                 else if (weapon == Weapon.MITRAILLETTE)
-                {
-                    reculDistance = DistReculTerreMITRAILLETTE.Value;
-                    reculPower = PuissReculTerreMITRAILLETTE.Value;
-                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit)/4);
-                    recul = true;
+                {                   
+                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
+                    StartCoroutine(Recul(targetPos, TimeReculTerreMITRAILLETTE.Value, PuissReculTerreMITRAILLETTE.Value));
                 }
                 else if (weapon == Weapon.SHOTGUN)
                 {
-                    reculPower = PuissReculTerreSHOTGUN.Value;
-                    reculDistance = DistReculTerreSHOTGUN.Value;
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir-vit)) ;
-                    recul = true;
+                    StartCoroutine(Recul(targetPos, TimeReculTerreSHOTGUN.Value, PuissReculTerreSHOTGUN.Value));
                 }
-            }
-
-            if (recul)
-            {
-                Recul(reculPower, actualPos, targetPos, reculDistance);
-
             }
 
         }
@@ -181,24 +165,27 @@ public class T10_MovementPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isGlace)
+        if (canMove)
         {
-            float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
-            float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
+            if (!isGlace)
+            {
+                float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+                float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
 
-            rb.velocity = new Vector2(x, y) * Speed.Value;
-        }
+                rb.velocity = new Vector2(x, y) * Speed.Value;
+            }
 
-        if (isGlace)
-        {
-  
-            float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
-            float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
+            if (isGlace)
+            {
+
+                float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+                float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
 
 
-            rb.AddForce(new Vector2(x, y) * Speed.Value);
-            rb.AddForce(-rb.velocity * 2);
-            
+                rb.AddForce(new Vector2(x, y) * Speed.Value);
+                rb.AddForce(-rb.velocity * 2);
+
+            }
         }
         
 
@@ -307,20 +294,14 @@ public class T10_MovementPlayer : MonoBehaviour
         }
     }
 
-
-    void Recul (float puissance, Vector3 actualPos, Vector3 targetPos, float reculDistance)
+    IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
     {
-        if(timeRecul < 1)
-        {
-            transform.position = Vector3.Lerp(actualPos, targetPos, timeRecul);
-            timeRecul += (reculDistance * Time.deltaTime);
-        }
-        else
-        {
-            recul = false;
-        }
-        
+        canMove = false;
+        rb.velocity = (new Vector3(targetPos.x, targetPos.y) - transform.position) * puissanceRecul;
+        yield return new WaitForSeconds(timeRecul);
+        canMove = true;
     }
+
     #endregion  // NOT GLACE --------------------------
     // ----------------------------------------------------------------
     IEnumerator FireGlace()
@@ -454,5 +435,6 @@ public class T10_MovementPlayer : MonoBehaviour
         }
 
     }
+
 
 }
