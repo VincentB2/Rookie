@@ -1225,6 +1225,10 @@ PrefabInstance:
       propertyPath: rangeEnemy
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6989819555900966090, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
 --- !u!1 &771837274
@@ -1809,6 +1813,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 16301713051904740, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 255802627530620209, guid: 9bfe9f0b6e8215a4c8ceda87d2b3ef0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.89
@@ -2196,6 +2204,10 @@ PrefabInstance:
     - target: {fileID: 6757362009338164287, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
       propertyPath: rangeEnemy
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989819555900966090, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
@@ -3070,6 +3082,10 @@ PrefabInstance:
       propertyPath: rangeEnemy
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6989819555900966090, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
 --- !u!1 &1792951332
@@ -3750,6 +3766,10 @@ PrefabInstance:
     - target: {fileID: 6757362009338164287, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
       propertyPath: rangeEnemy
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989819555900966090, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
