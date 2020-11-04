@@ -71,6 +71,7 @@ public class T10_EnemyAI : MonoBehaviour
                     {
                         GameObject projectile = Instantiate(enemyShootProjectile, transform.position, transform.rotation);
                         projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyShootProjectileSpeed * 100);
+                        projectile.GetComponent<T10_Projectile>().enemyShootDamage = damageEnemy;
                         timer = enemyShootFrequency;
                     }
                 }
@@ -109,7 +110,7 @@ public class T10_EnemyAI : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Debug.Log("Wtf");
-            col.gameObject.GetComponent<T10_PlayerFight>().playerHP -= damageEnemy;
+            col.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(damageEnemy);
             lifeEnemy -= 1.5f;
         }
     }

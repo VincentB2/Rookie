@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 class T10_Projectile : MonoBehaviour
 {
+    public float enemyShootDamage = 1f;
     void Awake()
     {
         Destroy(gameObject, 2);
@@ -9,7 +10,7 @@ class T10_Projectile : MonoBehaviour
     {
         if (c.gameObject.CompareTag("Player"))
         {
-            c.gameObject.GetComponent<T10_PlayerFight>().playerHP -= 1;
+            c.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(enemyShootDamage);
             Destroy(gameObject);
         }
     }
