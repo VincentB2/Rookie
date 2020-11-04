@@ -12,7 +12,7 @@ class T10_Emoji : MonoBehaviour
         SmilingImp
     }
     public Type emojiType;
-    public Sprite emojiSprite;
+    public Sprite[] emojiSprite;
     // Look At
     GameObject player;
     Transform target;
@@ -21,14 +21,13 @@ class T10_Emoji : MonoBehaviour
     float angle;
     void Awake()
     {
-        if (emojiSprite)
-            GetComponent<SpriteRenderer>().sprite = emojiSprite;
         player = GameObject.FindWithTag("Player");
         if (player)
             target = player.GetComponent<Transform>();
     }
     void Update()
     {
+
         Debug.Log(emojiType);
         if (target)
         {

@@ -3,6 +3,7 @@ using UnityEngine;
 public class T10_EnemyAI : MonoBehaviour
 {
     public GameObject player;
+    public GameObject emoji;
     public enum EnemyType
     {
         NORMAL,
@@ -17,7 +18,6 @@ public class T10_EnemyAI : MonoBehaviour
     public float lifeEnemy = 1.5f;
     public int damageEnemy = 1;
     // Julien
-    // Look At
     Transform target;
     Vector3 thisPos;
     Vector3 targetPos;
@@ -92,13 +92,72 @@ public class T10_EnemyAI : MonoBehaviour
         }
         EnemyDeath();
     }
-    void EnemyDeath()
+void EnemyDeath()
     {
         if (lifeEnemy <= 0)
         {
+            int randEmoji = Random.Range(0, 2);
+
+            if (enemyType == EnemyType.NORMAL)
+            {
+                GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                if (randEmoji == 0)
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                }
+                else
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SlightSmile;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
+                }
+            }
+            else if (enemyType == EnemyType.BIG)
+            {
+                GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                if (randEmoji == 0)
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[5];
+                }
+                else
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
+                }
+            }
+            else if (enemyType == EnemyType.SMALL)
+            {
+                GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                if (randEmoji == 0) 
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
+                }
+                else
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                }
+            }
+            else if (enemyType == EnemyType.SHOOT)
+            {
+                GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                if (randEmoji == 0)
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
+                }
+                else
+                {
+                    newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
+                    newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                }
+            }
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
             Destroy(gameObject);
         }
+
     }
     private void RotateGameObject(Vector3 target, float RotationSpeed, float offset)
     {
@@ -114,7 +173,6 @@ public class T10_EnemyAI : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Wtf");
             col.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(damageEnemy);
             lifeEnemy -= 1.5f;
         }
