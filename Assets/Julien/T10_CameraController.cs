@@ -21,8 +21,8 @@ class T10_CameraController : MonoBehaviour
     void Update()
     {
         if (ui.isGameMenued || ui.isGamePaused) transform.position =
-            Vector3.Lerp(transform.position, new Vector3((Input.mousePosition.x - Screen.width / 2) / (amplitudeInMenu * 1000),
-                (Input.mousePosition.y - Screen.height / 2) / (amplitudeInMenu * 1000), offset.z), smoothInMenu);
+            Vector3.Lerp(transform.position, new Vector3(target.position.x + (Input.mousePosition.x - Screen.width / 2) / (amplitudeInMenu * 1000),
+                target.position.y + (Input.mousePosition.y - Screen.height / 2) / (amplitudeInMenu * 1000), offset.z), smoothInMenu);
         else transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothInGame);
     }
     public void ShakeCamera(float shakeDuration, float shakeAmount)
