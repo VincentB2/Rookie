@@ -7,9 +7,10 @@ public class T10_Bullet : MonoBehaviour
 
 {
     GameObject player;
-    T10_CameraController camControl;
     public float damageBullet = 2f;
     public bool isGlace = false;
+
+    T10_CameraController camControl;
     public float shakeDur = 0.1f;
     public float shakeAm = 1f;
     void Awake()

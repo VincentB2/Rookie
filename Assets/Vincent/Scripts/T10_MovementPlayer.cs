@@ -6,7 +6,14 @@ using UnityEngine.UI;
 
 public class T10_MovementPlayer : MonoBehaviour
 {
-
+    //C-------------------------CAMERA SHAKE
+    T10_CameraController camControl;
+    public float shakeDurShotGun = 0.1f;
+    public float shakeAmShotGun = 1f;
+    public float shakeDurDefault = 0.1f;
+    public float shakeAmDefault = 1f;
+    public float shakeDurSMG = 0.1f;
+    public float shakeAmSMG = 1f;
     // ------------------------------- FIRE
     private Vector2 direction;
     public Canvas canvas;
@@ -75,6 +82,7 @@ public class T10_MovementPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
+        camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         smiley = SMILEY.SLIGHTSMILE;
         lastSmiley = smiley;
         WhichSmiley(smiley);
@@ -139,16 +147,20 @@ public class T10_MovementPlayer : MonoBehaviour
                 {
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
                     StartCoroutine(Recul(targetPos, TimeReculTerreDEFAULT.Value, PuissReculTerreDEFAULT.Value));
+                    camControl.ShakeCamera(shakeDurDefault, shakeAmDefault);
                 }
                 else if (weapon == Weapon.MITRAILLETTE)
                 {                   
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
                     StartCoroutine(Recul(targetPos, TimeReculTerreMITRAILLETTE.Value, PuissReculTerreMITRAILLETTE.Value));
+                    camControl.ShakeCamera(shakeDurSMG, shakeAmSMG);
                 }
                 else if (weapon == Weapon.SHOTGUN)
                 {
                     
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir-vit)) ;
+
+                    camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
                     StartCoroutine(Recul(targetPos, TimeReculTerreSHOTGUN.Value, PuissReculTerreSHOTGUN.Value));
                 }
             }
@@ -363,7 +375,6 @@ public class T10_MovementPlayer : MonoBehaviour
 
         if (weapon == Weapon.SHOTGUN)
         {
-            
             Vector2 cellScreenPosition = transform.position;
             Vector2 direction1 = Arrow.transform.position - transform.position;
             direction1 = direction1.normalized;

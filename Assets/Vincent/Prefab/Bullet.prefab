@@ -119,7 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBullet: 1
-  isGlace: 1
+  isGlace: 0
+  shakeDur: 0.1
+  shakeAm: 0.1
 --- !u!61 &7264345820842280376
 BoxCollider2D:
   m_ObjectHideFlags: 0
