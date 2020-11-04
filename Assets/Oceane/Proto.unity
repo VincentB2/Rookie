@@ -1583,7 +1583,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: shotgun
-    clip: {fileID: 8300000, guid: b07946ca7ff530045b63569950041404, type: 3}
+    clip: {fileID: 8300000, guid: 8e89354388d3fbc48a79d74083c2dca8, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
