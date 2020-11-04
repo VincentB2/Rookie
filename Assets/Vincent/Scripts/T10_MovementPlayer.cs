@@ -64,7 +64,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
     // ------------------------------- SMILEY
 
-    public enum SMILEY {JOY, RAGE, COLDFACE, HEARTEYES, SLIGHTSMILE, SCREAM, SMILINGLMP };
+    public enum SMILEY {JOY, RAGE, COLDFACE, HEARTEYES, SLIGHTSMILE, SCREAM, SMILINGIMP };
     public SMILEY smiley;
     SMILEY lastSmiley;
     public FloatVariable SpeedIncrease;
@@ -446,7 +446,7 @@ public class T10_MovementPlayer : MonoBehaviour
             bullets = BULLETS.DEFAULT;
 
         }
-        else if (smiley == SMILEY.SMILINGLMP)
+        else if (smiley == SMILEY.SMILINGIMP)
         {
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.DEFAULT;

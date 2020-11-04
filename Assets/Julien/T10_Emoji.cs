@@ -49,28 +49,29 @@ class T10_Emoji : MonoBehaviour
         {
             if (emojiType == Type.Joy)
             {
-                player.GetComponent<T10_MovementPlayer>().weapon = T10_MovementPlayer.Weapon.MITRAILLETTE;
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.JOY;
             }
             else if (emojiType == Type.SlightSmile)
             {
-
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.SLIGHTSMILE;
             }
             else if (emojiType == Type.Rage)
             {
-                player.GetComponent<T10_MovementPlayer>().weapon = T10_MovementPlayer.Weapon.SHOTGUN;
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.RAGE;
             }
             else if (emojiType == Type.SmilingImp)
             {
-
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.SMILINGIMP;
             }
             else if (emojiType == Type.Scream)
             {
-
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.SCREAM;
             }
             else if (emojiType == Type.ColdFace)
             {
-
-            }else if (emojiType == Type.HeartEyes)
+                player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.COLDFACE;
+            }
+            else if (emojiType == Type.HeartEyes)
             {
                 if (player.GetComponent<T10_PlayerFight>().playerHP < player.GetComponent<T10_PlayerFight>().playerHPValue && player.GetComponent<T10_PlayerFight>().playerHP != 0)
                 {
