@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7694167775893440033}
   - component: {fileID: 7653738370532799460}
   - component: {fileID: 9001528233806316539}
+  - component: {fileID: -1384890861482682352}
   m_Layer: 0
   m_Name: EnemySmall
   m_TagString: Enemy
@@ -53,6 +54,7 @@ MonoBehaviour:
   lifeEnemy: 0.5
   damageEnemy: 1
   enemyShootProjectile: {fileID: 0}
+  rangeEnemyShoot: 10
   enemyShootForce: 1
   enemyShootReactivity: 5
   enemyShootProjectileSpeed: 5
@@ -98,7 +100,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.2264151, g: 0.011747954, b: 0.011747954, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -155,3 +157,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-1384890861482682352
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661093356609848006}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d336bf5ac59bf2e4a8395d5d61b9ee73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
