@@ -2312,8 +2312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amplitudeInMenu: 2
-  smoothInMenu: 0.1
-  smoothInGame: 0.4
+  smoothInMenu: 0.2
+  smoothInGame: 0.2
 --- !u!4 &1792951337
 Transform:
   m_ObjectHideFlags: 0
