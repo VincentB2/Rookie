@@ -37,6 +37,5 @@ public class T10_PlayerFight : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerHP -= damage;
-        Debug.Log(playerHP);
     }
 }
