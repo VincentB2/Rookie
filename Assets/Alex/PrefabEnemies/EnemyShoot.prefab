@@ -49,10 +49,11 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyType: 3
   speedEnemy: 1.5
-  rangeEnemy: 4
+  rangeEnemy: 15
   lifeEnemy: 1.5
   damageEnemy: 1
   enemyShootProjectile: {fileID: 255802627530620210, guid: ed7607bec87ca9945aadb610f26a01fe, type: 3}
+  rangeEnemyShoot: 10
   enemyShootForce: 1
   enemyShootReactivity: 4
   enemyShootProjectileSpeed: 5
