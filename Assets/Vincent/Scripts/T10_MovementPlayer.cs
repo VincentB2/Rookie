@@ -88,6 +88,9 @@ public class T10_MovementPlayer : MonoBehaviour
             if(lastSmiley == SMILEY.SCREAM)
             {
                 Speed.Value /= SpeedIncrease.Value;
+            } else if(lastSmiley == SMILEY.COLDFACE)
+            {
+                bulletInUse.GetComponent<T10_Bullet>().isGlace = false;
             }
             WhichSmiley(smiley);
         }
@@ -412,6 +415,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.COLD;
+            bulletInUse.GetComponent<T10_Bullet>().isGlace = true;
 
         }
         //else if(smiley == SMILEY.HEARTEYES)

@@ -8,6 +8,8 @@ public class T10_Bullet : MonoBehaviour
 {
     GameObject player;
     public float damageBullet = 2f;
+    public bool isGlace = false;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -16,11 +18,11 @@ public class T10_Bullet : MonoBehaviour
             damageBullet = 1f;
         }else if(player.GetComponent<T10_MovementPlayer>().weapon == T10_MovementPlayer.Weapon.SHOTGUN)
         {
-            damageBullet = 2f;
+            damageBullet = 1f;
         }
         else 
         {
-            damageBullet = 2f;
+            damageBullet = 1f;
         }
         Destroy(gameObject, 2);
     }
@@ -32,9 +34,23 @@ public class T10_Bullet : MonoBehaviour
     {
         if (col.CompareTag("Enemy")) 
         {
-            col.gameObject.GetComponent<T10_EnemyAI>().lifeEnemy -= damageBullet;
-            Debug.Log(col.gameObject.GetComponent<T10_EnemyAI>().lifeEnemy);
+            T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
+            scriptEnemy.lifeEnemy -= damageBullet;
+            Debug.Log(scriptEnemy.lifeEnemy);
             Destroy(gameObject);
+            if (isGlace)
+            {
+                if (!scriptEnemy.isSlowed)
+                {
+                    scriptEnemy.StartCoroutine("BeSlow");
+                }
+                else
+                {
+                    scriptEnemy.StartCoroutine("AlreadySlowed");
+                }
+            }
         }
+
+        
     }
 }
