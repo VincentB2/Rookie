@@ -147,6 +147,7 @@ public class T10_MovementPlayer : MonoBehaviour
                 }
                 else if (weapon == Weapon.SHOTGUN)
                 {
+                    
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir-vit)) ;
                     StartCoroutine(Recul(targetPos, TimeReculTerreSHOTGUN.Value, PuissReculTerreSHOTGUN.Value));
                 }
@@ -242,6 +243,8 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
+            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
         }
 
@@ -258,6 +261,8 @@ public class T10_MovementPlayer : MonoBehaviour
 
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
+
+            FindObjectOfType<T10_AudioManager>().Play("rifleShot");
 
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
         }
@@ -290,6 +295,8 @@ public class T10_MovementPlayer : MonoBehaviour
 
             GameObject newBullet2 = Instantiate(bulletInUse, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * speedBullets.Value, ForceMode2D.Impulse);
+
+            FindObjectOfType<T10_AudioManager>().Play("shotgun");
 
             yield return new WaitForSeconds( cadenceSHOTGUN.Value / cadenceGenerale.Value);
         }
@@ -326,6 +333,8 @@ public class T10_MovementPlayer : MonoBehaviour
 
             rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
 
+            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
             
         }
@@ -345,6 +354,8 @@ public class T10_MovementPlayer : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
 
             rb.AddForce(-direction * reculGlaceMITRAILLETTE.Value, ForceMode2D.Impulse);
+
+            FindObjectOfType<T10_AudioManager>().Play("rifleShot");
 
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
             
@@ -382,6 +393,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
             rb.AddForce(-direction * reculGlaceSHOTGUN.Value, ForceMode2D.Impulse);
 
+            FindObjectOfType<T10_AudioManager>().Play("shotgun");
             yield return new WaitForSeconds(cadenceSHOTGUN.Value / cadenceGenerale.Value);
             
         }
