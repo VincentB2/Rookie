@@ -12,10 +12,6 @@ public class T10_ArrowScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {

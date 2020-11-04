@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class T10_PlayerFight : MonoBehaviour
 {
     public int playerHPValue = 3;
@@ -19,17 +18,14 @@ public class T10_PlayerFight : MonoBehaviour
         timerGlobal = timerGlobalValue;
         textTimer = GameObject.Find("/UI/InGameLayer/timer");
     }
-
     // Update is called once per frame
     void Update()
     {
         timerGlobal -= Time.deltaTime;
         timerScore = (timerGlobalValue - timerGlobal) * 1000;
-        Debug.Log(textTimer.GetComponent<TextMeshProUGUI>().text);
         textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + timerGlobal;
         PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
-
-        if(playerHP <= 0) 
+        if (playerHP <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -38,10 +34,8 @@ public class T10_PlayerFight : MonoBehaviour
             FindObjectOfType<T10_AudioManager>().Play("click");
         }
     }
-
-    public void TakeDamage(float damage) 
+    public void TakeDamage(float damage)
     {
         playerHP -= damage;
-        Debug.Log(playerHP);
     }
 }

@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b473b6aa58b53a4fa72033b8e76a684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameMenued: 0
+  isGameMenued: 1
   isGamePaused: 0
   timeScale: 0
 --- !u!224 &191911865
