@@ -47,6 +47,7 @@ class T10_Emoji : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player")) 
         {
+            FindObjectOfType<T10_AudioManager>().Play("smiley");
             if (emojiType == Type.Joy)
             {
                 player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.JOY;

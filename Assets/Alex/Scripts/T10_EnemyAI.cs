@@ -92,6 +92,7 @@ public class T10_EnemyAI : MonoBehaviour
     {
         if (lifeEnemy <= 0)
         {
+            FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
             Destroy(gameObject);
         }
     }
