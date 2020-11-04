@@ -36,7 +36,7 @@ class T10_CameraController : MonoBehaviour
     {
         while (shakeDuration > 0)
         {
-            transform.position = offset + Random.insideUnitSphere * shakeAmount;
+            transform.position = target.position + offset + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime;
             yield return 0;
         }
