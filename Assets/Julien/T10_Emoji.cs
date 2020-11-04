@@ -49,7 +49,7 @@ class T10_Emoji : MonoBehaviour
         {
             if (emojiType == Type.Joy)
             {
-                player.GetComponent<MovementPlayer>().weapon = MovementPlayer.Weapon.MITRAILLETTE;
+                player.GetComponent<T10_MovementPlayer>().weapon = T10_MovementPlayer.Weapon.MITRAILLETTE;
             }
             else if (emojiType == Type.SlightSmile)
             {
@@ -57,7 +57,7 @@ class T10_Emoji : MonoBehaviour
             }
             else if (emojiType == Type.Rage)
             {
-                player.GetComponent<MovementPlayer>().weapon = MovementPlayer.Weapon.SHOTGUN;
+                player.GetComponent<T10_MovementPlayer>().weapon = T10_MovementPlayer.Weapon.SHOTGUN;
             }
             else if (emojiType == Type.SmilingImp)
             {
