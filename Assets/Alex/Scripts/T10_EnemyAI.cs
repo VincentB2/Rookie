@@ -31,6 +31,10 @@ public class T10_EnemyAI : MonoBehaviour
         enemyShootProjectileSpeed = 5,
         enemyShootFrequency = .5F;
     float timer;
+
+    //Vincent
+    public bool isSlowed;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -115,4 +119,22 @@ public class T10_EnemyAI : MonoBehaviour
             lifeEnemy -= 1.5f;
         }
     }
+
+    public IEnumerator BeSlow()
+    {
+        speedEnemy /= 2;
+        isSlowed = true;
+        yield return new WaitForSeconds(3);
+        speedEnemy *= 2;
+        isSlowed = false;
+    }
+
+    public IEnumerator AlreadySlowed()
+    {
+        yield return new WaitForSeconds(3);
+        speedEnemy *= 2;
+        isSlowed = false;
+    }
+
+
 }
