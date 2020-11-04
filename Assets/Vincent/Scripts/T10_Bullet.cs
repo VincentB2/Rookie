@@ -8,7 +8,8 @@ public class T10_Bullet : MonoBehaviour
 {
     GameObject player;
     public float damageBullet = 2f;
-    public bool isGlace = false;
+    public enum BULLETS { DEFAULT, GLACE, SNIPER }
+    public BULLETS bulletType;
 
     T10_CameraController camControl;
     public float shakeDur = 0.1f;
@@ -17,16 +18,17 @@ public class T10_Bullet : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
-        if(player.GetComponent<T10_MovementPlayer>().weapon == T10_MovementPlayer.Weapon.MITRAILLETTE) 
+        if(bulletType == BULLETS.SNIPER)
         {
-            damageBullet = 1f;
-        }else if(player.GetComponent<T10_MovementPlayer>().weapon == T10_MovementPlayer.Weapon.SHOTGUN)
+            damageBullet = 3f;
+        } else
         {
             damageBullet = 1f;
         }
-        else 
+
+        if (bulletType == BULLETS.GLACE)
         {
-            damageBullet = 1f;
+            GetComponent<SpriteRenderer>().color = Color.blue;
         }
         Destroy(gameObject, 2);
     }
@@ -42,8 +44,7 @@ public class T10_Bullet : MonoBehaviour
             scriptEnemy.lifeEnemy -= damageBullet;
             camControl.ShakeCamera(shakeDur, shakeAm);
             Debug.Log(scriptEnemy.lifeEnemy);
-            Destroy(gameObject);
-            if (isGlace)
+            if (bulletType == BULLETS.GLACE)
             {
                 if (!scriptEnemy.isSlowed)
                 {
@@ -53,6 +54,11 @@ public class T10_Bullet : MonoBehaviour
                 {
                     scriptEnemy.StartCoroutine("AlreadySlowed");
                 }
+            }
+
+            if (bulletType != BULLETS.SNIPER)
+            {
+                Destroy(gameObject);
             }
         }
 

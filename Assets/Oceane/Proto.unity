@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 575507880}
   - component: {fileID: 575507885}
   - component: {fileID: 575507886}
+  - component: {fileID: 575507887}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -946,11 +947,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDurShotGun: 0.15
-  shakeAmShotGun: 0.1
-  shakeDurDefault: 0.1
-  shakeAmDefault: 0.15
-  shakeDurSMG: 0.05
-  shakeAmSMG: 0.05
+  shakeAmShotGun: 0.6
+  shakeDurDefault: 0
+  shakeAmDefault: 0
+  shakeDurSMG: 0
+  shakeAmSMG: 0
   canvas: {fileID: 191911863}
   Arrow: {fileID: 1878562370}
   weapon: 0
@@ -967,14 +968,23 @@ MonoBehaviour:
   reculGlaceSHOTGUN: {fileID: 11400000, guid: 6f89043289f444e43afa7b2a435895aa, type: 2}
   TimeReculTerreSHOTGUN: {fileID: 11400000, guid: 8a5680a520e63ca4fb74609f2624a22d, type: 2}
   PuissReculTerreSHOTGUN: {fileID: 11400000, guid: ca980db2e78c84e45b5ca70a59144af1, type: 2}
+  cadenceSNIPER: {fileID: 11400000, guid: 0e2b627b496ad0e4c8114b527969ef4a, type: 2}
+  reculGlaceSNIPER: {fileID: 11400000, guid: bd45e1c85ef4ca640a0193a7cc9a3292, type: 2}
+  PuissReculTerreSNIPER: {fileID: 11400000, guid: 1bbf7c2c3e9d5844498a5fefbd6a99e3, type: 2}
+  TimeReculTerreSNIPER: {fileID: 11400000, guid: eabcbe4031b9692478d66f642a761428, type: 2}
+  lineRenderer: {fileID: 575507887}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 822
   speedBullets: {fileID: 11400000, guid: 3992cba79566e28458b511eaa3292caa, type: 2}
   bulletInUse: {fileID: 7380909107784362838, guid: 122b9954e5814cd429fe2f1a227a5874, type: 3}
   Speed: {fileID: 11400000, guid: 5218758f82d12f44a977158f3d846ecc, type: 2}
+  dashDelay: {fileID: 11400000, guid: a759552338fe5cf4aad74c454379e689, type: 2}
   isGlace: 0
   player:
     serializedVersion: 2
     m_Bits: 512
-  smiley: 0
+  smiley: 6
   SpeedIncrease: {fileID: 11400000, guid: 8a8d44de3d90d0c4eaeb6ccad2c31d46, type: 2}
 --- !u!50 &575507882
 Rigidbody2D:
@@ -1100,6 +1110,104 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!120 &575507887
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575507879}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1001 &770732469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1614,6 +1722,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: walkSnow
     clip: {fileID: 8300000, guid: 74c685f44783b6545ae61e7f9063a46e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: sniper
+    clip: {fileID: 8300000, guid: 05e73bc6033cf5f4e9b3dad8748d67c6, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
