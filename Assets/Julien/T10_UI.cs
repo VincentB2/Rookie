@@ -38,7 +38,7 @@ class T10_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }
     void PauseResumeGame() { isGamePaused ^= true; }
-    void MenuGame() { isGameMenued ^= true; PauseResumeGame(); }
+    void MenuGame() { isGameMenued ^= true; isGamePaused = false; }
     void MainMenuGame()
     {
         // SceneManager.LoadScene( /* main menu scene needed */ );
