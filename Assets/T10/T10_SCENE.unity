@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &4092039 stripped
@@ -585,6 +593,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1164766731}
     m_Modifications:
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -132.31526
@@ -686,7 +702,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
-  doorID: 4
   goal: 40
 --- !u!61 &115923822
 BoxCollider2D:
@@ -1027,6 +1042,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1490255946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &177235539 stripped
@@ -1089,6 +1112,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1490255946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &207057563 stripped
@@ -25601,6 +25632,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1360814957}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &243116955 stripped
@@ -25755,6 +25794,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1164766731}
     m_Modifications:
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1490255946}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60.35072
@@ -25864,7 +25911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &319333135
 Transform:
   m_ObjectHideFlags: 0
@@ -26204,7 +26251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
-  doorID: 2
   goal: 25
 --- !u!61 &406809549
 BoxCollider2D:
@@ -26338,6 +26384,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 406809546}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &408511719 stripped
@@ -26525,6 +26579,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemyBig (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1490255946}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.100914
@@ -26587,6 +26649,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemyBig
       objectReference: {fileID: 0}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1360814957}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -82.27423
@@ -26972,6 +27042,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &471846727 stripped
@@ -54320,6 +54398,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &891208447 stripped
@@ -54540,6 +54626,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1164766731}
     m_Modifications:
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1490255946}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.460907
@@ -55023,7 +55117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1109933674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55758,6 +55852,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 406809546}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &1339851618 stripped
@@ -55811,7 +55913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
-  doorID: 1
   goal: 15
 --- !u!61 &1360814960
 BoxCollider2D:
@@ -56208,6 +56309,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemyBig (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -101.02
@@ -56266,6 +56375,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1164766731}
     m_Modifications:
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -128.13174
@@ -56424,7 +56541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
-  doorID: 3
   goal: 33
 --- !u!61 &1490255949
 BoxCollider2D:
@@ -56558,6 +56674,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1360814957}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &1501116525 stripped
@@ -56685,6 +56809,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemyBig (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 115923819}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -121.27712
@@ -56743,6 +56875,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1164766731}
     m_Modifications:
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 406809546}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -44.288136
@@ -57431,7 +57571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1758241127
 Transform:
   m_ObjectHideFlags: 0
@@ -58308,6 +58448,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnEnemyBig (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: enemiesDead
+      value: 
+      objectReference: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 406809546}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.68073
@@ -58884,5 +59032,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: {fileID: 11400000, guid: 8908ef19f0dd1e545aa9f319ad48502d, type: 2}
-  doorID: 0
   goal: 2
