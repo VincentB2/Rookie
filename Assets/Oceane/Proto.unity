@@ -1382,7 +1382,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 664b223c2056db24c8fee18b0623b1e4, type: 3}
   - {fileID: 21300000, guid: 7b7e9cdd8342c6343ad1786cc778863a, type: 3}
   - {fileID: 21300000, guid: 1c8a9cb5a7f055e49ad570be12bef4ba, type: 3}
-  playerCap: {fileID: 0}
+  playerCap: {fileID: 1323607732}
 --- !u!50 &575507882
 Rigidbody2D:
   serializedVersion: 4
