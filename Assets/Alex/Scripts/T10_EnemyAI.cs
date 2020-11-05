@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 public class T10_EnemyAI : MonoBehaviour
 {
     public GameObject player;
@@ -15,7 +17,7 @@ public class T10_EnemyAI : MonoBehaviour
     [Header("EnemyCarac")]
     public float speedEnemy = 1.5f;
     public float rangeEnemy = 4.0f;
-    public float lifeEnemy = 1.5f;
+    public int lifeEnemy = 1;
     public int damageEnemy = 1;
     // Julien
     Transform target;
@@ -31,14 +33,12 @@ public class T10_EnemyAI : MonoBehaviour
         enemyShootProjectileSpeed = 5,
         enemyShootFrequency = .5F;
     float timer;
-
     //Vincent
     public bool isSlowed;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        // Julien
         // Look At
         if (player)
             target = player.GetComponent<Transform>();
@@ -91,6 +91,7 @@ public class T10_EnemyAI : MonoBehaviour
             }
         }
         EnemyDeath();
+
     }
 void EnemyDeath()
     {
@@ -179,7 +180,7 @@ void EnemyDeath()
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(damageEnemy);
-            lifeEnemy -= 1.5f;
+            lifeEnemy -= 2;
         }
     }
 
