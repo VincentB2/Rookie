@@ -24,7 +24,7 @@ public class T10_MovementPlayer : MonoBehaviour
     public Canvas canvas;
     public GameObject Arrow;
     
-    public enum Weapon {DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER};
+    public enum Weapon {DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE};
     public Weapon weapon;
  
 
@@ -61,8 +61,14 @@ public class T10_MovementPlayer : MonoBehaviour
     private bool isSniper;
     Vector2 lineVector;
     public LayerMask ignoreLayers;
+    // --------GRENADE
+    [Header("GRENADE")]
+    public FloatVariable cadenceGRENADE;
+    public FloatVariable reculGlaceGRENADE;
+    public FloatVariable PuissReculTerreGRENADE;
+    public FloatVariable TimeReculTerreGRENADE;
     // ---------------RECUL
-    
+
     private Vector3 actualPos;
     private Vector3 targetPos;
     private bool isRecul = false;
@@ -72,7 +78,7 @@ public class T10_MovementPlayer : MonoBehaviour
     // ---------------------BULLETS
     [Header("BULLETS")]
     public FloatVariable speedBullets;
-    private enum BULLETS { DEFAULT, GLACE, SNIPER};
+    private enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE};
     BULLETS bullets;
     public GameObject bulletInUse;
 
@@ -96,7 +102,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
     // ------------------------------- SMILEY
 
-    public enum SMILEY {JOY, RAGE, COLDFACE, HEARTEYES, SLIGHTSMILE, SCREAM, SMILINGIMP };
+    public enum SMILEY {JOY, RAGE, COLDFACE, HEARTEYES, SLIGHTSMILE, SCREAM, SMILINGIMP, MAD };
     [Header("SMILEY")]
     public SMILEY smiley;
     SMILEY lastSmiley;
@@ -213,6 +219,14 @@ public class T10_MovementPlayer : MonoBehaviour
 
                     //camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
                     StartCoroutine(Recul(targetPos, TimeReculTerreSNIPER.Value, PuissReculTerreSNIPER.Value));
+                }
+                else if (weapon == Weapon.GRENADE)
+                {
+
+                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
+
+                    //camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
+                    StartCoroutine(Recul(targetPos, TimeReculTerreGRENADE.Value, PuissReculTerreGRENADE.Value));
                 }
             }
 
@@ -388,10 +402,28 @@ public class T10_MovementPlayer : MonoBehaviour
 
             yield return new WaitForSeconds(cadenceSNIPER.Value / cadenceGenerale.Value);
         }
+        else if (weapon == Weapon.GRENADE)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction1 = mousePos - transform.position;
+            direction1 = direction.normalized;
+            direction1 *= transform.localScale.x / (2 * transform.localScale.x);
+
+            Vector2 cellScreenPosition = transform.position;
+
+            Vector2 bulletPos = cellScreenPosition + direction1;
+
+            GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value /0.7f, ForceMode2D.Impulse);
+
+            //FindObjectOfType<T10_AudioManager>().Play("sniper");
+
+            yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
+        }
         canFire = true;
     }
 
-    IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
+    public IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
     {
         canMove = false;
         rb.velocity = (new Vector3(targetPos.x, targetPos.y) - transform.position) * puissanceRecul;
@@ -506,6 +538,28 @@ public class T10_MovementPlayer : MonoBehaviour
             yield return new WaitForSeconds(cadenceSNIPER.Value / cadenceGenerale.Value);
 
         }
+        else if (weapon == Weapon.GRENADE)
+        {
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction1 = mousePos - transform.position;
+            direction1 = direction.normalized;
+            direction1 *= transform.localScale.x / (2 * transform.localScale.x);
+
+            Vector2 cellScreenPosition = transform.position;
+
+            Vector2 bulletPos = cellScreenPosition + direction1;
+
+            GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
+
+            rb.AddForce(-direction * reculGlaceGRENADE.Value, ForceMode2D.Impulse);
+
+            FindObjectOfType<T10_AudioManager>().Play("sniper");
+
+            yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
+
+        }
         canFire = true;
     }
 
@@ -563,6 +617,13 @@ public class T10_MovementPlayer : MonoBehaviour
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.SNIPER;
             lineRenderer.enabled = true;
             isSniper = true;
+
+        }
+        else if (smiley == SMILEY.MAD)
+        {
+            weapon = Weapon.GRENADE;
+            bullets = BULLETS.GRENADE;
+            bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GRENADE;
 
         }
 

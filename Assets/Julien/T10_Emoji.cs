@@ -30,7 +30,6 @@ class T10_Emoji : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(emojiType);
         if (target)
         {
             thisPos = transform.position;

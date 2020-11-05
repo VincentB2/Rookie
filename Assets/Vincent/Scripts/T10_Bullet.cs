@@ -8,20 +8,30 @@ public class T10_Bullet : MonoBehaviour
 {
     GameObject player;
     public float damageBullet = 2f;
-    public enum BULLETS { DEFAULT, GLACE, SNIPER }
+    public enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE }
     public BULLETS bulletType;
 
     T10_CameraController camControl;
     public float shakeDur = 0.1f;
     public float shakeAm = 1f;
+
+    public GameObject bomb;
+    private bool canExplode = true;
+    public FloatVariable delayBeforeExplosion;
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
-        if(bulletType == BULLETS.SNIPER)
+        if (bulletType == BULLETS.SNIPER)
         {
             damageBullet = 3f;
-        } else
+        }
+        else if (bulletType == BULLETS.GRENADE)
+        {
+            damageBullet = 0;
+            StartCoroutine("ExplodeAfterDelay");
+        }
+        else
         {
             damageBullet = 1f;
         }
@@ -31,6 +41,14 @@ public class T10_Bullet : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.blue;
         }
         Destroy(gameObject, 2);
+    }
+
+    private void Update()
+    {
+        if (bulletType == BULLETS.GRENADE && Input.GetMouseButtonUp(0))
+        {
+            Explode();
+        }
     }
     public void TakeDamage(float life, float dmg) 
     {
@@ -54,7 +72,12 @@ public class T10_Bullet : MonoBehaviour
                 {
                     scriptEnemy.StartCoroutine("AlreadySlowed");
                 }
+            } else if(bulletType == BULLETS.GRENADE)
+            {
+                Explode();
             }
+
+            
 
             if (bulletType != BULLETS.SNIPER)
             {
@@ -63,5 +86,23 @@ public class T10_Bullet : MonoBehaviour
         }
 
         
+    }
+
+    private void Explode()
+    {
+        if (canExplode)
+        {
+            canExplode = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            Instantiate(bomb, transform.position, transform.rotation);
+        }
+        
+    }
+
+    IEnumerator ExplodeAfterDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeExplosion.Value);
+        Explode();
     }
 }
