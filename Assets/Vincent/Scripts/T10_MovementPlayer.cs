@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class T10_MovementPlayer : MonoBehaviour
 {
@@ -20,7 +19,6 @@ public class T10_MovementPlayer : MonoBehaviour
    
     private Vector2 direction;
     [Header("FIRE")]
-    public Canvas canvas;
     public GameObject Arrow;
     
     public enum Weapon {DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE};
@@ -282,22 +280,22 @@ public class T10_MovementPlayer : MonoBehaviour
 
     }
 
-    void Curseur()
-    {
-        float canvasScale = canvas.scaleFactor;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = mousePos - transform.position;
-        direction = direction.normalized;
+    //void Curseur()
+    //{
+    //    float canvasScale = canvas.scaleFactor;
+    //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //    direction = mousePos - transform.position;
+    //    direction = direction.normalized;
 
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(Vector3.right * transform.localScale.x / 2.0f) - Camera.main.WorldToScreenPoint(Vector2.zero);
-        direction *= ((screenPos.x / Camera.main.orthographicSize / 5) + (500 / Camera.main.orthographicSize) / 5) * canvasScale ;
-        Vector2 cellScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
+    //    Vector2 screenPos = Camera.main.WorldToScreenPoint(Vector3.right * transform.localScale.x / 2.0f) - Camera.main.WorldToScreenPoint(Vector2.zero);
+    //    direction *= ((screenPos.x / Camera.main.orthographicSize / 5) + (500 / Camera.main.orthographicSize) / 5) * canvasScale ;
+    //    Vector2 cellScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
 
-        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        Arrow.GetComponent<RectTransform>().localPosition = ((cellScreenPosition + direction) / canvasScale);
+    //    var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    //    Arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    //    Arrow.GetComponent<RectTransform>().localPosition = ((cellScreenPosition + direction) / canvasScale);
 
-    }
+    //}
     // ---------------------------------------------------------------- NOT GLACE
     #region notGlace
     IEnumerator Dash()
@@ -576,7 +574,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
-            playerCap.sprite = emojiSprite[5];
+            playerCap.sprite = emojiSprite[0];
 
         } else if(smiley == SMILEY.JOY)
         {
@@ -584,7 +582,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.MITRAILLETTE;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
-            playerCap.sprite = emojiSprite[3];
+            playerCap.sprite = emojiSprite[1];
 
         } else if(smiley == SMILEY.RAGE)
         {
@@ -592,7 +590,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.SHOTGUN;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType =T10_Bullet.BULLETS.DEFAULT;
-            playerCap.sprite = emojiSprite[4];
+            playerCap.sprite = emojiSprite[2];
 
         }
         else if(smiley == SMILEY.COLDFACE)
@@ -601,7 +599,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.GLACE;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GLACE;
-            playerCap.sprite = emojiSprite[0];
+            playerCap.sprite = emojiSprite[3];
 
         }
         //else if(smiley == SMILEY.HEARTEYES)
@@ -616,7 +614,7 @@ public class T10_MovementPlayer : MonoBehaviour
             Speed.Value *= SpeedIncrease.Value;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
-            playerCap.sprite = emojiSprite[1];
+            playerCap.sprite = emojiSprite[4];
 
         }
         else if (smiley == SMILEY.SMILINGIMP)
@@ -626,6 +624,7 @@ public class T10_MovementPlayer : MonoBehaviour
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.SNIPER;
             lineRenderer.enabled = true;
             isSniper = true;
+            playerCap.sprite = emojiSprite[5];
 
         }
         else if (smiley == SMILEY.MAD)
@@ -633,7 +632,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.GRENADE;
             bullets = BULLETS.GRENADE;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GRENADE;
-
+            playerCap.sprite = emojiSprite[6];
         }
         StartCoroutine("CooldownSmiley");
 
