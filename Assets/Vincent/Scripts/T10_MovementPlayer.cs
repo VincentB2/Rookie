@@ -107,6 +107,8 @@ public class T10_MovementPlayer : MonoBehaviour
     SMILEY lastSmiley;
     public FloatVariable SpeedIncrease;
     public FloatVariable cooldownSmiley;
+    public Sprite[] emojiSprite;
+    public SpriteRenderer playerCap;
 
     private void Awake()
     {
@@ -114,7 +116,7 @@ public class T10_MovementPlayer : MonoBehaviour
         lineRenderer.SetVertexCount(2);
         lineRenderer.SetWidth(0.02f, 0.02f);
         lineRenderer.SetColors(Color.red, Color.red);
-
+        playerCap = GameObject.Find("/Player/smileyCap").GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -574,6 +576,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
+            playerCap.sprite = emojiSprite[5];
 
         } else if(smiley == SMILEY.JOY)
         {
@@ -581,6 +584,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.MITRAILLETTE;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
+            playerCap.sprite = emojiSprite[3];
 
         } else if(smiley == SMILEY.RAGE)
         {
@@ -588,6 +592,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.SHOTGUN;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType =T10_Bullet.BULLETS.DEFAULT;
+            playerCap.sprite = emojiSprite[4];
 
         }
         else if(smiley == SMILEY.COLDFACE)
@@ -596,6 +601,7 @@ public class T10_MovementPlayer : MonoBehaviour
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.GLACE;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GLACE;
+            playerCap.sprite = emojiSprite[0];
 
         }
         //else if(smiley == SMILEY.HEARTEYES)
@@ -610,6 +616,7 @@ public class T10_MovementPlayer : MonoBehaviour
             Speed.Value *= SpeedIncrease.Value;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
+            playerCap.sprite = emojiSprite[1];
 
         }
         else if (smiley == SMILEY.SMILINGIMP)
