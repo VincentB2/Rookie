@@ -101,7 +101,7 @@ void EnemyDeath()
         {
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
-            if(randLoot > 4)
+            if(randLoot < 4)
             {
                 if (enemyType == EnemyType.NORMAL)
                 {
