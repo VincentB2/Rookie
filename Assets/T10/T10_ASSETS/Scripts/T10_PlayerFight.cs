@@ -33,6 +33,7 @@ public class T10_PlayerFight : MonoBehaviour
         PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
         if (playerHP <= 0)
         {
+            playerHP = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
