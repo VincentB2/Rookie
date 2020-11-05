@@ -232,8 +232,6 @@ public class T10_MovementPlayer : MonoBehaviour
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
                 rb.velocity = new Vector2(x, y) * speed;
             }
-            else
-                gameObject.GetComponent<Animator>().Play("player_idle");
             if (isGlace)
             {
                 float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
