@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b669b2a95f86a4c9de0d500e310ccf, type: 3}
   m_Name: DelayBeforeExplode
   m_EditorClassIdentifier: 
-  Value: 0.25
+  Value: 0.75

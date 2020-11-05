@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBullet: 1
-  bulletType: 2
+  bulletType: 3
   shakeDur: 0.1
   shakeAm: 0.1
-  bomb: {fileID: 6017879667057612319, guid: dac1491cf97802a49b9cbd476edaf990, type: 3}
+  bomb: {fileID: 4673299897557795240, guid: dac1491cf97802a49b9cbd476edaf990, type: 3}
   delayBeforeExplosion: {fileID: 11400000, guid: 76a5ce45963fa7841b7155752e7f2b6e, type: 2}
 --- !u!61 &7264345820842280376
 BoxCollider2D:

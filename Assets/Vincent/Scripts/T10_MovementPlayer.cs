@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -124,7 +123,7 @@ public class T10_MovementPlayer : MonoBehaviour
         col = GetComponent<Collider2D>();
 
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
-        smiley = SMILEY.MAD;
+        smiley = SMILEY.SLIGHTSMILE;
         lastSmiley = smiley;
         WhichSmiley(smiley);
         
@@ -414,7 +413,7 @@ public class T10_MovementPlayer : MonoBehaviour
             Vector2 bulletPos = cellScreenPosition + direction1;
 
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value /0.7f, ForceMode2D.Impulse);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value *0.4f, ForceMode2D.Impulse);
 
             //FindObjectOfType<T10_AudioManager>().Play("sniper");
 
@@ -552,11 +551,11 @@ public class T10_MovementPlayer : MonoBehaviour
             Vector2 bulletPos = cellScreenPosition + direction1;
 
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value * 0.4f, ForceMode2D.Impulse);
 
             rb.AddForce(-direction * reculGlaceGRENADE.Value, ForceMode2D.Impulse);
 
-            FindObjectOfType<T10_AudioManager>().Play("sniper");
+            //FindObjectOfType<T10_AudioManager>().Play("sniper");
 
             yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
 

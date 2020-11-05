@@ -14,6 +14,7 @@ public class T10_Bomb : MonoBehaviour
     public FloatVariable shakeDur;
     public FloatVariable shakeAm;
     private GameObject player;
+    public GameObject shockWave;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,6 @@ public class T10_Bomb : MonoBehaviour
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         camControl.ShakeCamera(shakeDur.Value, shakeAm.Value);
         player = GameObject.FindGameObjectWithTag("Player");
-        ReculPlayer();
         Destroy(gameObject, 2);
         
     }
@@ -38,6 +38,7 @@ public class T10_Bomb : MonoBehaviour
         {
             GetComponent<Collider2D>().enabled = false;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,20 +51,4 @@ public class T10_Bomb : MonoBehaviour
         }
     }
 
-    private void ReculPlayer()
-    {
-        Vector2 direction = player.transform.position - transform.position;
-        
-            T10_MovementPlayer playerScript = player.GetComponent<T10_MovementPlayer>();
-            StartCoroutine(playerScript.Recul(direction, direction.magnitude / 20, 20 / direction.magnitude));
-        
-
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 10);
-    }
 }
