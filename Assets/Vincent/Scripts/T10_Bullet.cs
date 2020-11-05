@@ -7,7 +7,7 @@ public class T10_Bullet : MonoBehaviour
 
 {
     GameObject player;
-    public float damageBullet = 2f;
+    public int damageBullet = 2;
     public enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE }
     public BULLETS bulletType;
 
@@ -24,7 +24,7 @@ public class T10_Bullet : MonoBehaviour
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         if (bulletType == BULLETS.SNIPER)
         {
-            damageBullet = 3f;
+            damageBullet = 3;
         }
         else if (bulletType == BULLETS.GRENADE)
         {
@@ -33,7 +33,7 @@ public class T10_Bullet : MonoBehaviour
         }
         else
         {
-            damageBullet = 1f;
+            damageBullet = 1;
         }
 
         if (bulletType == BULLETS.GLACE)
