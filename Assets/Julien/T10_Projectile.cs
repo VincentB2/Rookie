@@ -13,5 +13,7 @@ class T10_Projectile : MonoBehaviour
             c.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(enemyShootDamage);
             Destroy(gameObject);
         }
+        if (c.gameObject.CompareTag("Wall"))
+            Destroy(gameObject);
     }
 }
