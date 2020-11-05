@@ -28,7 +28,6 @@ class T10_Emoji : MonoBehaviour
     }
     void Update()
     {
-
         if (target)
         {
             thisPos = transform.position;
@@ -38,13 +37,10 @@ class T10_Emoji : MonoBehaviour
             angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * 4);
         }
-
-        
     }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player")) 
+        if (col.gameObject.CompareTag("Player"))
         {
             FindObjectOfType<T10_AudioManager>().Play("smiley");
             if (emojiType == Type.Joy)
@@ -83,11 +79,7 @@ class T10_Emoji : MonoBehaviour
             {
                 player.GetComponent<T10_MovementPlayer>().smiley = T10_MovementPlayer.SMILEY.MAD;
             }
-
             Destroy(gameObject);
         }
-
-        
-
     }
 }
