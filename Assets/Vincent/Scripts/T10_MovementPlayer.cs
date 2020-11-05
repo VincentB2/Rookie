@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-
 public class T10_MovementPlayer : MonoBehaviour
 {
     //C-------------------------CAMERA SHAKE
-   
     T10_CameraController camControl;
     [Header("CAMERA SHAKE")]
     public float shakeDurShotGun = 0.1f;
@@ -16,20 +14,15 @@ public class T10_MovementPlayer : MonoBehaviour
     public float shakeDurSMG = 0.1f;
     public float shakeAmSMG = 1f;
     // ------------------------------- FIRE
-   
     private Vector2 direction;
     [Header("FIRE")]
     public GameObject Arrow;
-    
-    public enum Weapon {DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE};
+    public enum Weapon { DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE }
     public Weapon weapon;
- 
-
     // --------------------GUNS
     private bool canFire = true;
     [Header("GUNS")]
     public FloatVariable cadenceGenerale;
-
     // --------DEFAULT
     [Header("DEFAULT")]
     public FloatVariable cadenceDEFAULT;
@@ -65,22 +58,18 @@ public class T10_MovementPlayer : MonoBehaviour
     public FloatVariable PuissReculTerreGRENADE;
     public FloatVariable TimeReculTerreGRENADE;
     // ---------------RECUL
-
     private Vector3 actualPos;
     private Vector3 targetPos;
     private bool isRecul = false;
     private float reculPower = 1;
     float timeSave;
-
     // ---------------------BULLETS
     [Header("BULLETS")]
     public FloatVariable speedBullets;
-    private enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE};
+    private enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE }
     BULLETS bullets;
     public GameObject bulletInUse;
-
     // ------------------------------- MOVE
-   
     private bool canMove = true;
     [Header("MOVE")]
     public FloatVariable Speed;
@@ -88,19 +77,15 @@ public class T10_MovementPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private bool canDash = true;
     public FloatVariable dashDelay;
-
     // ------------------------------- SOL
     [HideInInspector]
     public bool isGlace = false;
-
     // ------------------------------- COLLIDER
     private Collider2D col;
     [Header("RAYCAST IGNORE")]
     public LayerMask player;
-
     // ------------------------------- SMILEY
-
-    public enum SMILEY {JOY, RAGE, COLDFACE, SLIGHTSMILE, SCREAM, SMILINGIMP, MAD };
+    public enum SMILEY { JOY, RAGE, COLDFACE, SLIGHTSMILE, SCREAM, SMILINGIMP, MAD }
     [Header("SMILEY")]
     public SMILEY smiley;
     SMILEY lastSmiley;
@@ -108,7 +93,8 @@ public class T10_MovementPlayer : MonoBehaviour
     public FloatVariable cooldownSmiley;
     public Sprite[] emojiSprite;
     public SpriteRenderer playerCap;
-
+    // Julien
+    T10_UI ui;
     private void Awake()
     {
         lineRenderer.enabled = false;
@@ -116,32 +102,30 @@ public class T10_MovementPlayer : MonoBehaviour
         lineRenderer.SetWidth(0.02f, 0.02f);
         lineRenderer.SetColors(Color.red, Color.red);
         playerCap = GameObject.Find("/Player/smileyCap").GetComponent<SpriteRenderer>();
+        // Julien
+        ui = GameObject.Find("UI").GetComponent<T10_UI>();
     }
-
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         smiley = SMILEY.SLIGHTSMILE;
         lastSmiley = smiley;
         WhichSmiley(smiley);
         speed = Speed.Value;
-        
     }
-
     // Update is called once per frame
     void Update()
     {
-        if(smiley != lastSmiley)
+        if (smiley != lastSmiley)
         {
-            if(lastSmiley == SMILEY.SCREAM)
+            if (lastSmiley == SMILEY.SCREAM)
             {
                 speed /= SpeedIncrease.Value;
-            } 
-            if(lastSmiley == SMILEY.SMILINGIMP)
+            }
+            if (lastSmiley == SMILEY.SMILINGIMP)
             {
                 lineRenderer.enabled = false;
                 isSniper = false;
@@ -149,7 +133,6 @@ public class T10_MovementPlayer : MonoBehaviour
             WhichSmiley(smiley);
             StartCoroutine("ResetFireAfterNewSmiley");
         }
-
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, ~player);;
         if (hit)
         {
@@ -158,16 +141,13 @@ public class T10_MovementPlayer : MonoBehaviour
                 //timeRecul = 1;
                 isGlace = true;
             }
-
         }
         else
         {
             isGlace = false;
         }
-
         if (!isGlace)
         {
-
             if (Input.GetKeyDown("space") && canDash)
             {
                 if (rb.velocity.magnitude != 0)
@@ -176,22 +156,17 @@ public class T10_MovementPlayer : MonoBehaviour
                     StartCoroutine("Dash");
                 }
             }
-
             // Curseur();
             FaceMouse();
-
             if (isSniper)
             {
                 SetLineRenderer();
             }
-
-            if (Input.GetMouseButton(0) && canFire)
+            if (!ui.isGameMenued && !ui.isGamePaused && Input.GetMouseButton(0) && canFire)
             {
                 canFire = false;
                 StartCoroutine("Fire");
-
                 actualPos = transform.position;
-
                 Vector3 dir = direction.normalized;
                 Vector3 vit = rb.velocity.normalized;
                 if (weapon == Weapon.DEFAULT)
@@ -201,39 +176,31 @@ public class T10_MovementPlayer : MonoBehaviour
                     camControl.ShakeCamera(shakeDurDefault, shakeAmDefault);
                 }
                 else if (weapon == Weapon.MITRAILLETTE)
-                {                   
+                {
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
                     StartCoroutine(Recul(targetPos, TimeReculTerreMITRAILLETTE.Value, PuissReculTerreMITRAILLETTE.Value));
                     camControl.ShakeCamera(shakeDurSMG, shakeAmSMG);
                 }
                 else if (weapon == Weapon.SHOTGUN)
                 {
-                    
-                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir-vit)) ;
-
+                    targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
                     camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
                     StartCoroutine(Recul(targetPos, TimeReculTerreSHOTGUN.Value, PuissReculTerreSHOTGUN.Value));
                 }
                 else if (weapon == Weapon.SNIPER)
                 {
-
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
-
                     //camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
                     StartCoroutine(Recul(targetPos, TimeReculTerreSNIPER.Value, PuissReculTerreSNIPER.Value));
                 }
                 else if (weapon == Weapon.GRENADE)
                 {
-
                     targetPos = transform.position - ((new Vector3(direction.x, direction.y) * reculPower) + (dir - vit));
-
                     //camControl.ShakeCamera(shakeDurShotGun, shakeAmShotGun);
                     StartCoroutine(Recul(targetPos, TimeReculTerreGRENADE.Value, PuissReculTerreGRENADE.Value));
                 }
             }
-
         }
-
         if (isGlace)
         {
             //Curseur();
@@ -242,18 +209,14 @@ public class T10_MovementPlayer : MonoBehaviour
             {
                 SetLineRenderer();
             }
-
             if (Input.GetMouseButton(0) && canFire)
             {
                 StartCoroutine("FireGlace");
-
                 actualPos = transform.position;
             }
         }
-
         lastSmiley = smiley;
     }
-
     private void FixedUpdate()
     {
         if (canMove)
@@ -262,41 +225,29 @@ public class T10_MovementPlayer : MonoBehaviour
             {
                 float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
-
                 rb.velocity = new Vector2(x, y) * speed;
             }
-
             if (isGlace)
             {
-
                 float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
-
-
                 rb.AddForce(new Vector2(x, y) * speed);
                 rb.AddForce(-rb.velocity * 2);
-
             }
         }
-        
-
     }
-
     //void Curseur()
     //{
     //    float canvasScale = canvas.scaleFactor;
     //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     //    direction = mousePos - transform.position;
     //    direction = direction.normalized;
-
     //    Vector2 screenPos = Camera.main.WorldToScreenPoint(Vector3.right * transform.localScale.x / 2.0f) - Camera.main.WorldToScreenPoint(Vector2.zero);
     //    direction *= ((screenPos.x / Camera.main.orthographicSize / 5) + (500 / Camera.main.orthographicSize) / 5) * canvasScale ;
     //    Vector2 cellScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
-
     //    var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     //    Arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     //    Arrow.GetComponent<RectTransform>().localPosition = ((cellScreenPosition + direction) / canvasScale);
-
     //}
     // ---------------------------------------------------------------- NOT GLACE
     #region notGlace
@@ -309,9 +260,7 @@ public class T10_MovementPlayer : MonoBehaviour
         yield return new WaitForSeconds(dashDelay.Value);
         canDash = true;
         //yield return new
-        
     }
-
     IEnumerator Fire()
     {
         if (weapon == Weapon.DEFAULT)
@@ -320,88 +269,61 @@ public class T10_MovementPlayer : MonoBehaviour
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("SMGShot");
-
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
         }
-
         else if (weapon == Weapon.MITRAILLETTE)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("rifleShot");
-
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
         }
-
         else if (weapon == Weapon.SHOTGUN)
         {
             Vector2 cellScreenPosition = transform.position;
             Vector2 direction1 = Arrow.transform.position - transform.position;
             direction1 = direction1.normalized;
             direction1 *= 0.5f;
-            
             Vector2 bulletPos1 = cellScreenPosition + direction1;
-
             Vector2 direction2 = Arrow.transform.GetChild(0).transform.position - transform.position;
             direction2 = direction2.normalized;
             direction2 *= 0.5f;
             Vector2 bulletPos2 = cellScreenPosition + direction2;
-
             Vector2 direction3 = Arrow.transform.GetChild(1).transform.position - transform.position;
             direction3 = direction3.normalized;
             direction3 *= 0.5f;
-
             Vector2 bulletPos3 = cellScreenPosition + direction3;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos1, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             GameObject newBullet1 = Instantiate(bulletInUse, bulletPos2, transform.rotation);
             newBullet1.GetComponent<Rigidbody2D>().AddForce(direction2 * speedBullets.Value, ForceMode2D.Impulse);
-
             GameObject newBullet2 = Instantiate(bulletInUse, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * speedBullets.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("shotgun");
-
-            yield return new WaitForSeconds( cadenceSHOTGUN.Value / cadenceGenerale.Value);
+            yield return new WaitForSeconds(cadenceSHOTGUN.Value / cadenceGenerale.Value);
         }
-
         else if (weapon == Weapon.SNIPER)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value * 1.5f, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("sniper");
-
             yield return new WaitForSeconds(cadenceSNIPER.Value / cadenceGenerale.Value);
         }
         else if (weapon == Weapon.GRENADE)
@@ -410,21 +332,15 @@ public class T10_MovementPlayer : MonoBehaviour
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value *0.4f, ForceMode2D.Impulse);
-
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value * 0.4f, ForceMode2D.Impulse);
             FindObjectOfType<T10_AudioManager>().Play("GrenadeLauncher");
-
             yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
         }
         canFire = true;
     }
-
     public IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
     {
         Debug.Log("Recul");
@@ -433,7 +349,6 @@ public class T10_MovementPlayer : MonoBehaviour
         yield return new WaitForSeconds(timeRecul);
         canMove = true;
     }
-
     #endregion  // NOT GLACE --------------------------
     // ----------------------------------------------------------------
     IEnumerator FireGlace()
@@ -441,168 +356,117 @@ public class T10_MovementPlayer : MonoBehaviour
         canFire = false;
         if (weapon == Weapon.DEFAULT)
         {
-            
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("SMGShot");
-
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
-            
         }
         else if (weapon == Weapon.MITRAILLETTE)
         {
-            
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             rb.AddForce(-direction * reculGlaceMITRAILLETTE.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("rifleShot");
-
             yield return new WaitForSeconds(cadenceMITRAILLETTE.Value / cadenceGenerale.Value);
-            
         }
-
         if (weapon == Weapon.SHOTGUN)
         {
             Vector2 cellScreenPosition = transform.position;
             Vector2 direction1 = Arrow.transform.position - transform.position;
             direction1 = direction1.normalized;
             direction1 *= 0.5f;
-
             Vector2 bulletPos1 = cellScreenPosition + direction1;
-
             Vector2 direction2 = Arrow.transform.GetChild(0).transform.position - transform.position;
             direction2 = direction2.normalized;
             direction2 *= 0.5f;
             Vector2 bulletPos2 = cellScreenPosition + direction2;
-
             Vector2 direction3 = Arrow.transform.GetChild(1).transform.position - transform.position;
             direction3 = direction3.normalized;
             direction3 *= 0.5f;
-
             Vector2 bulletPos3 = cellScreenPosition + direction3;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos1, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             GameObject newBullet1 = Instantiate(bulletInUse, bulletPos2, transform.rotation);
             newBullet1.GetComponent<Rigidbody2D>().AddForce(direction2 * speedBullets.Value, ForceMode2D.Impulse);
-
             GameObject newBullet2 = Instantiate(bulletInUse, bulletPos3, transform.rotation);
             newBullet2.GetComponent<Rigidbody2D>().AddForce(direction3 * speedBullets.Value, ForceMode2D.Impulse);
-
             rb.AddForce(-direction * reculGlaceSHOTGUN.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("shotgun");
             yield return new WaitForSeconds(cadenceSHOTGUN.Value / cadenceGenerale.Value);
-            
         }
         else if (weapon == Weapon.SNIPER)
         {
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-
             rb.AddForce(-direction * reculGlaceSNIPER.Value, ForceMode2D.Impulse);
-
             FindObjectOfType<T10_AudioManager>().Play("sniper");
-
             yield return new WaitForSeconds(cadenceSNIPER.Value / cadenceGenerale.Value);
-
         }
         else if (weapon == Weapon.GRENADE)
         {
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction1 = mousePos - transform.position;
             direction1 = direction.normalized;
             direction1 *= transform.localScale.x / (2 * transform.localScale.x);
-
             Vector2 cellScreenPosition = transform.position;
-
             Vector2 bulletPos = cellScreenPosition + direction1;
-
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value * 0.4f, ForceMode2D.Impulse);
-
             rb.AddForce(-direction * reculGlaceGRENADE.Value, ForceMode2D.Impulse);
-
             //FindObjectOfType<T10_AudioManager>().Play("sniper");
-
             yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
-
         }
         canFire = true;
     }
-
     private void WhichSmiley(SMILEY smiley)
     {
         StopCoroutine("CooldownSmiley");
-
-        if(smiley == SMILEY.SLIGHTSMILE)
+        if (smiley == SMILEY.SLIGHTSMILE)
         {
-
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
             playerCap.sprite = emojiSprite[0];
-
-        } else if(smiley == SMILEY.JOY)
+        }
+        else if (smiley == SMILEY.JOY)
         {
-
             weapon = Weapon.MITRAILLETTE;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
             playerCap.sprite = emojiSprite[1];
-
-        } else if(smiley == SMILEY.RAGE)
+        }
+        else if (smiley == SMILEY.RAGE)
         {
-
             weapon = Weapon.SHOTGUN;
             bullets = BULLETS.DEFAULT;
-            bulletInUse.GetComponent<T10_Bullet>().bulletType =T10_Bullet.BULLETS.DEFAULT;
+            bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
             playerCap.sprite = emojiSprite[2];
-
         }
-        else if(smiley == SMILEY.COLDFACE)
+        else if (smiley == SMILEY.COLDFACE)
         {
-
             weapon = Weapon.DEFAULT;
             bullets = BULLETS.GLACE;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GLACE;
             playerCap.sprite = emojiSprite[3];
-
         }
         else if (smiley == SMILEY.SCREAM)
         {
@@ -611,7 +475,6 @@ public class T10_MovementPlayer : MonoBehaviour
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
             playerCap.sprite = emojiSprite[4];
-
         }
         else if (smiley == SMILEY.SMILINGIMP)
         {
@@ -621,7 +484,6 @@ public class T10_MovementPlayer : MonoBehaviour
             lineRenderer.enabled = true;
             isSniper = true;
             playerCap.sprite = emojiSprite[5];
-
         }
         else if (smiley == SMILEY.MAD)
         {
@@ -631,17 +493,13 @@ public class T10_MovementPlayer : MonoBehaviour
             playerCap.sprite = emojiSprite[6];
         }
         StartCoroutine("CooldownSmiley");
-
     }
-
     IEnumerator ResetFireAfterNewSmiley()
     {
         StopCoroutine("Fire");
         yield return new WaitForSeconds(0.1f);
         canFire = true;
     }
-
-
     private void FaceMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -649,35 +507,29 @@ public class T10_MovementPlayer : MonoBehaviour
         direction = direction.normalized;
         transform.up = direction;
     }
-
-    private void SetLineRenderer() 
+    private void SetLineRenderer()
     {
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         lineVector = MousePos - new Vector2(Arrow.transform.position.x, Arrow.transform.position.y);
         lineVector = lineVector.normalized;
-
         Ray ray = new Ray(Arrow.transform.position, lineVector * 30);
         RaycastHit2D hit = Physics2D.Raycast(Arrow.transform.position, lineVector, Mathf.Infinity, ~ignoreLayers);
-       // Debug.DrawRay(Arrow.transform.position, lineVector * 30, Color.black);
-        
+        // Debug.DrawRay(Arrow.transform.position, lineVector * 30, Color.black);
         Vector2 pos2;
         if (hit)
         {
             pos2 = hit.point;
-        } else
-        {
-            pos2 = ray.GetPoint(25); ;
         }
-
+        else
+        {
+            pos2 = ray.GetPoint(25);;
+        }
         lineRenderer.SetPosition(0, Arrow.transform.position);
         lineRenderer.SetPosition(1, pos2);
-
     }
-
     IEnumerator CooldownSmiley()
     {
         yield return new WaitForSeconds(cooldownSmiley.Value);
         smiley = SMILEY.SLIGHTSMILE;
     }
-
 }
