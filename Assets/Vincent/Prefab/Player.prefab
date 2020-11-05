@@ -164,7 +164,7 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 512
-  smiley: 4
+  smiley: 3
   SpeedIncrease: {fileID: 11400000, guid: 8a8d44de3d90d0c4eaeb6ccad2c31d46, type: 2}
   cooldownSmiley: {fileID: 11400000, guid: c1651e17f6a518b4096d72c051b564b6, type: 2}
   emojiSprite:

@@ -100,7 +100,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
     // ------------------------------- SMILEY
 
-    public enum SMILEY {JOY, RAGE, COLDFACE, HEARTEYES, SLIGHTSMILE, SCREAM, SMILINGIMP, MAD };
+    public enum SMILEY {JOY, RAGE, COLDFACE, SLIGHTSMILE, SCREAM, SMILINGIMP, MAD };
     [Header("SMILEY")]
     public SMILEY smiley;
     SMILEY lastSmiley;
@@ -604,12 +604,6 @@ public class T10_MovementPlayer : MonoBehaviour
             playerCap.sprite = emojiSprite[3];
 
         }
-        //else if(smiley == SMILEY.HEARTEYES)
-        //{
-
-
-
-        //}
         else if (smiley == SMILEY.SCREAM)
         {
             weapon = Weapon.DEFAULT;
