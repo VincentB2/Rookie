@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  count: 0
   emoji: {fileID: 471946193021546444, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
   enemyType: 3
-  speedEnemy: 1.5
+  speedEnemy: 3
   rangeEnemy: 15
   lifeEnemy: 1
   damageEnemy: 2
