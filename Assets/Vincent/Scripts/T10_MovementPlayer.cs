@@ -106,6 +106,7 @@ public class T10_MovementPlayer : MonoBehaviour
     public SMILEY smiley;
     SMILEY lastSmiley;
     public FloatVariable SpeedIncrease;
+    public FloatVariable cooldownSmiley;
 
     private void Awake()
     {
@@ -565,6 +566,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
     private void WhichSmiley(SMILEY smiley)
     {
+        StopCoroutine("CooldownSmiley");
 
         if(smiley == SMILEY.SLIGHTSMILE)
         {
@@ -626,6 +628,7 @@ public class T10_MovementPlayer : MonoBehaviour
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GRENADE;
 
         }
+        StartCoroutine("CooldownSmiley");
 
     }
 
@@ -647,10 +650,6 @@ public class T10_MovementPlayer : MonoBehaviour
 
     private void SetLineRenderer() 
     {
-
-
-
-
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         lineVector = MousePos - new Vector2(Arrow.transform.position.x, Arrow.transform.position.y);
         lineVector = lineVector.normalized;
@@ -671,6 +670,12 @@ public class T10_MovementPlayer : MonoBehaviour
         lineRenderer.SetPosition(0, Arrow.transform.position);
         lineRenderer.SetPosition(1, pos2);
 
+    }
+
+    IEnumerator CooldownSmiley()
+    {
+        yield return new WaitForSeconds(cooldownSmiley.Value);
+        smiley = SMILEY.SLIGHTSMILE;
     }
 
 }
