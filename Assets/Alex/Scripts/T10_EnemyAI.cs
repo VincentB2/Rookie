@@ -100,8 +100,8 @@ void EnemyDeath()
         if (lifeEnemy <= 0)
         {
             int randEmoji = Random.Range(0, 2);
-            int randLoot = Random.Range(0, 2);
-            if(randLoot == 0)
+            int randLoot = Random.Range(0, 5);
+            if(randLoot < 4)
             {
                 if (enemyType == EnemyType.NORMAL)
                 {
@@ -113,8 +113,8 @@ void EnemyDeath()
                     }
                     else
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SlightSmile;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[5];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
 
                     }
                 }
@@ -128,8 +128,8 @@ void EnemyDeath()
                     }
                     else
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
                     }
                 }
                 else if (enemyType == EnemyType.SMALL)
@@ -137,13 +137,13 @@ void EnemyDeath()
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
                     }
                     else
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
                     }
                 }
                 else if (enemyType == EnemyType.SHOOT)
@@ -151,13 +151,13 @@ void EnemyDeath()
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SlightSmile;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[5];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
                     }
                     else
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
                     }
                 }
             }
