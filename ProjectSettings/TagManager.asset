@@ -7,6 +7,10 @@ TagManager:
   - EnemySmall
   - Enemy01
   - EnemyBig
+  - Enemy
+  - Emoji
+  - EnemyShootProjectile
+  - Wall
   layers:
   - Default
   - TransparentFX
