@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 class T10_UI : MonoBehaviour
@@ -50,11 +51,13 @@ class T10_UI : MonoBehaviour
         InGameLayer.SetActive(!isGameMenued && !isGamePaused && !Player.isEndMenued);
         PauseLayer.SetActive(!isGameMenued && isGamePaused && !Player.isEndMenued);
         MenuLayerEnd.SetActive(!isGameMenued && !isGamePaused && Player.isEndMenued);
+        ScoreText.GetComponent<TextMeshProUGUI>().text = "Your score : " + PlayerPrefs.GetInt("ScoreTeam10");
+
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }
     void PauseResumeGame() { isGamePaused ^= true; }
     void PlayGame() { isGameMenued ^= true; isGamePaused = false; }
-    void MenuGame() { SceneManager.LoadScene("T10_SCENE"); }
+    void MenuGame() { SceneManager.LoadScene("T10_SCENE"); PlayerPrefs.SetInt("ScoreTeam10", 0); }
     void MainMenuGame()
     {
         Time.timeScale = 1f;

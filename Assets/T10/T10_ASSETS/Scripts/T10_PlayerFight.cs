@@ -30,7 +30,7 @@ public class T10_PlayerFight : MonoBehaviour
     void Update()
     {
         timerGlobal += Time.deltaTime;
-        timerScore = (timerGlobalValue - timerGlobal) * 1000;
+        timerScore = 5000 - timerGlobal * 50;
         textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + string.Format("{0:0.00}", timerGlobal);
         // Julien
         livesText.GetComponent<TextMeshProUGUI>().text = "Lives : " + playerHP;

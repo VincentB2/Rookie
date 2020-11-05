@@ -122,7 +122,7 @@ public class T10_EnemyAI : MonoBehaviour
                 else if (enemyType == EnemyType.BIG)
                 {
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
-                    if (randEmoji == 0)
+                    if (randLoot < 4)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
@@ -140,8 +140,8 @@ public class T10_EnemyAI : MonoBehaviour
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
                         Destroy(newEmoji, 5);
                     }
                     else
@@ -156,8 +156,8 @@ public class T10_EnemyAI : MonoBehaviour
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
                         Destroy(newEmoji, 5);
                     }
                     else
