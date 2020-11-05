@@ -119,6 +119,11 @@ public class T10_MovementPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Julien
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            gameObject.GetComponent<Animator>().Play("player_walk");
+        else
+            gameObject.GetComponent<Animator>().Play("player_idle");
         if (smiley != lastSmiley)
         {
             if (lastSmiley == SMILEY.SCREAM)
@@ -131,7 +136,6 @@ public class T10_MovementPlayer : MonoBehaviour
                 isSniper = false;
             }
             WhichSmiley(smiley);
-            
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, ~player);;
         if (hit)
@@ -228,6 +232,8 @@ public class T10_MovementPlayer : MonoBehaviour
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
                 rb.velocity = new Vector2(x, y) * speed;
             }
+            else
+                gameObject.GetComponent<Animator>().Play("player_idle");
             if (isGlace)
             {
                 float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
@@ -354,7 +360,6 @@ public class T10_MovementPlayer : MonoBehaviour
     // ----------------------------------------------------------------
     IEnumerator FireGlace()
     {
-       
         if (weapon == Weapon.DEFAULT)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -440,7 +445,6 @@ public class T10_MovementPlayer : MonoBehaviour
     }
     private void WhichSmiley(SMILEY smiley)
     {
-        
         StopCoroutine("Fire");
         StopCoroutine("FireGlace");
         canFire = false;
@@ -500,7 +504,6 @@ public class T10_MovementPlayer : MonoBehaviour
         StartCoroutine("CooldownSmiley");
         canFire = true;
     }
-
     private void FaceMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
