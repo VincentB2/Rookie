@@ -36572,6 +36572,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3267950279878693235, guid: 40ef19ee8b62d32459b3ae1f39e9fcff, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3267950279878693238, guid: 40ef19ee8b62d32459b3ae1f39e9fcff, type: 3}
       propertyPath: textTimer
       value: 
