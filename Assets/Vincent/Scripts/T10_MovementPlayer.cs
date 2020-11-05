@@ -131,7 +131,7 @@ public class T10_MovementPlayer : MonoBehaviour
                 isSniper = false;
             }
             WhichSmiley(smiley);
-            StartCoroutine("ResetFireAfterNewSmiley");
+            
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, ~player);;
         if (hit)
@@ -209,7 +209,7 @@ public class T10_MovementPlayer : MonoBehaviour
             {
                 SetLineRenderer();
             }
-            if (Input.GetMouseButton(0) && canFire)
+            if (!ui.isGameMenued && !ui.isGamePaused && Input.GetMouseButton(0) && canFire)
             {
                 StartCoroutine("FireGlace");
                 actualPos = transform.position;
@@ -439,6 +439,9 @@ public class T10_MovementPlayer : MonoBehaviour
     }
     private void WhichSmiley(SMILEY smiley)
     {
+        
+        StopCoroutine("Fire");
+        canFire = false;
         StopCoroutine("CooldownSmiley");
         if (smiley == SMILEY.SLIGHTSMILE)
         {
@@ -493,14 +496,9 @@ public class T10_MovementPlayer : MonoBehaviour
             playerCap.sprite = emojiSprite[6];
         }
         StartCoroutine("CooldownSmiley");
-    }
-    IEnumerator ResetFireAfterNewSmiley()
-    {
-        StopCoroutine("Fire");
-        canFire = false;
-        yield return new WaitForSeconds(0.2f);
         canFire = true;
     }
+
     private void FaceMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
