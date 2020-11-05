@@ -110,12 +110,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
-
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.BIG)
@@ -125,11 +126,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.SMALL)
@@ -139,11 +142,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.SHOOT)
@@ -153,11 +158,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
+                        Destroy(newEmoji, 5);
                     }
                 }
             }
