@@ -97,4 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeSpawn: 10
   timeBeforeSpawnValue: 4
-  enemyType: {fileID: 6757362009338164285, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}
+  enemyType: {fileID: 273016224002529623, guid: fe57cf09727e4d24f9835e4a595ef7f3, type: 3}

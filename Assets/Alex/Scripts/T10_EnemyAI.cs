@@ -27,6 +27,7 @@ public class T10_EnemyAI : MonoBehaviour
     // EnemyShoot
     [Header("EnemyShoot")]
     public GameObject enemyShootProjectile;
+    public Transform enemyParent;
     public float rangeEnemyShoot = 10.0f;
     public float enemyShootForce = 1,
         enemyShootReactivity = 50f,
@@ -50,19 +51,19 @@ public class T10_EnemyAI : MonoBehaviour
         if (enemyType == EnemyType.SHOOT)
         {
             // Look At
-            if ((player.transform.position - transform.position).magnitude <= rangeEnemy && (player.transform.position - transform.position).magnitude > rangeEnemyShoot)
+            if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemy && (player.transform.position - enemyParent.position).magnitude > rangeEnemyShoot)
             {
-                thisPos = transform.position;
+                thisPos = enemyParent.position;
                 targetPos = target.position;
                 targetPos.x = targetPos.x - thisPos.x;
                 targetPos.y = targetPos.y - thisPos.y;
                 angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
-                transform.position = Vector2.MoveTowards(transform.position, target.position, speedEnemy * Time.deltaTime);
+                enemyParent.position = Vector2.MoveTowards(enemyParent.position, target.position, speedEnemy * Time.deltaTime);
             }
-            else if ((player.transform.position - transform.position).magnitude <= rangeEnemyShoot)
+            else if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemyShoot)
             {
-                thisPos = transform.position;
+                thisPos = enemyParent.position;
                 targetPos = target.position;
                 targetPos.x = targetPos.x - thisPos.x;
                 targetPos.y = targetPos.y - thisPos.y;
@@ -73,7 +74,7 @@ public class T10_EnemyAI : MonoBehaviour
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
-                        GameObject projectile = Instantiate(enemyShootProjectile, transform.position, transform.rotation);
+                        GameObject projectile = Instantiate(enemyShootProjectile, enemyParent.position, transform.rotation);
                         projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyShootProjectileSpeed * 100);
                         projectile.GetComponent<T10_Projectile>().enemyShootDamage = damageEnemy;
                         timer = enemyShootFrequency;
@@ -84,10 +85,10 @@ public class T10_EnemyAI : MonoBehaviour
         else
         {
             // Alex
-            float step = speedEnemy * Time.deltaTime;
-            if ((player.transform.position - transform.position).magnitude <= rangeEnemy)
+            if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemy && enemyType != EnemyType.SHOOT)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
+                RotateGameObject(player.transform.position, 50f, -90f);
+                enemyParent.position = Vector2.MoveTowards(enemyParent.position, target.position, speedEnemy * Time.deltaTime);
             }
         }
         EnemyDeath();
@@ -103,7 +104,7 @@ void EnemyDeath()
             {
                 if (enemyType == EnemyType.NORMAL)
                 {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
@@ -118,7 +119,7 @@ void EnemyDeath()
                 }
                 else if (enemyType == EnemyType.BIG)
                 {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
@@ -132,7 +133,7 @@ void EnemyDeath()
                 }
                 else if (enemyType == EnemyType.SMALL)
                 {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
@@ -146,7 +147,7 @@ void EnemyDeath()
                 }
                 else if (enemyType == EnemyType.SHOOT)
                 {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
                     if (randEmoji == 0)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SlightSmile;
@@ -161,7 +162,7 @@ void EnemyDeath()
             }
             
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
-            Destroy(gameObject);
+            Destroy(enemyParent.gameObject);
         }
 
     }
