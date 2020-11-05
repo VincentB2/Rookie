@@ -41,7 +41,8 @@ class T10_UI : MonoBehaviour
     void MenuGame() { isGameMenued ^= true; isGamePaused = false; }
     void MainMenuGame()
     {
-        // SceneManager.LoadScene( /* main menu scene needed */ );
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("SalleArcade");
     }
     void QuitGame() { Application.Quit(); }
 }
