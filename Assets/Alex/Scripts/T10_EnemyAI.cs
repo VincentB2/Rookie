@@ -5,6 +5,7 @@ using TMPro;
 public class T10_EnemyAI : MonoBehaviour
 {
     public GameObject player;
+    public int count = 0;
     public GameObject emoji;
     public enum EnemyType
     {
@@ -162,6 +163,11 @@ void EnemyDeath()
             }
             
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
+
+            Debug.Log("Compteur = " + PlayerPrefs.GetInt("count"));
+            count = PlayerPrefs.GetInt("count");
+            count++;
+            PlayerPrefs.SetInt("count", count);
             Destroy(enemyParent.gameObject);
         }
 

@@ -80,7 +80,7 @@ class T10_Emoji : MonoBehaviour
                     player.GetComponent<T10_PlayerFight>().playerHP += 1;
                     Debug.Log(player.GetComponent<T10_PlayerFight>().playerHP);
                 }
-                playerCap.sprite = emojiSprite[2];
+                //playerCap.sprite = emojiSprite[2];
             }
 
             Destroy(gameObject);

@@ -61,7 +61,6 @@ public class T10_Bullet : MonoBehaviour
             T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
             scriptEnemy.lifeEnemy -= damageBullet;
             camControl.ShakeCamera(shakeDur, shakeAm);
-            Debug.Log(scriptEnemy.lifeEnemy);
             if (bulletType == BULLETS.GLACE)
             {
                 if (!scriptEnemy.isSlowed)
