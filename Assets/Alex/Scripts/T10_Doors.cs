@@ -18,7 +18,7 @@ public class T10_Doors : MonoBehaviour
     {
         if( i < doors.Length)
         {
-            if(PlayerPrefs.GetInt("count") == compteur) 
+            if(PlayerPrefs.GetInt("count") >= compteur) 
             {
                 if(i == 0)
                 {

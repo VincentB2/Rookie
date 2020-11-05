@@ -95,6 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f13d2bfc22a943a2d0310aa1497c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeSpawn: 10
+  rangeSpawn: 12
   timeBeforeSpawnValue: 1
   enemyType: {fileID: 6525913103736498997, guid: 7337f9dc72cbebb43995cdaebe12dc62, type: 3}
