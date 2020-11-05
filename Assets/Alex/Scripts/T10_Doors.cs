@@ -6,7 +6,7 @@ public class T10_Doors : MonoBehaviour
 {
     int i = 0;
     public GameObject[] doors;
-    public int compteur = 15;
+    public int compteur = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,7 @@ public class T10_Doors : MonoBehaviour
                 if(i == 0)
                 {
                     doors[i].SetActive(false);
+                    compteur = 15;
                 }else if(i > 0) 
                 {
                     doors[i - 1].SetActive(true);
