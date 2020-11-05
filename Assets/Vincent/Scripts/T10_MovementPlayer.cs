@@ -84,6 +84,7 @@ public class T10_MovementPlayer : MonoBehaviour
     private bool canMove = true;
     [Header("MOVE")]
     public FloatVariable Speed;
+    private float speed;
     private Rigidbody2D rb;
     private bool canDash = true;
     public FloatVariable dashDelay;
@@ -127,6 +128,7 @@ public class T10_MovementPlayer : MonoBehaviour
         smiley = SMILEY.SLIGHTSMILE;
         lastSmiley = smiley;
         WhichSmiley(smiley);
+        speed = Speed.Value;
         
     }
 
@@ -137,7 +139,7 @@ public class T10_MovementPlayer : MonoBehaviour
         {
             if(lastSmiley == SMILEY.SCREAM)
             {
-                Speed.Value /= SpeedIncrease.Value;
+                speed /= SpeedIncrease.Value;
             } 
             if(lastSmiley == SMILEY.SMILINGIMP)
             {
@@ -261,7 +263,7 @@ public class T10_MovementPlayer : MonoBehaviour
                 float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
 
-                rb.velocity = new Vector2(x, y) * Speed.Value;
+                rb.velocity = new Vector2(x, y) * speed;
             }
 
             if (isGlace)
@@ -271,7 +273,7 @@ public class T10_MovementPlayer : MonoBehaviour
                 float y = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
 
 
-                rb.AddForce(new Vector2(x, y) * Speed.Value);
+                rb.AddForce(new Vector2(x, y) * speed);
                 rb.AddForce(-rb.velocity * 2);
 
             }
@@ -301,9 +303,9 @@ public class T10_MovementPlayer : MonoBehaviour
     IEnumerator Dash()
     {
         canDash = false;
-        Speed.Value *= 3;
+        speed *= 3;
         yield return new WaitForSeconds(0.3f);
-        Speed.Value /= 3;
+        speed /= 3;
         yield return new WaitForSeconds(dashDelay.Value);
         canDash = true;
         //yield return new
@@ -611,7 +613,7 @@ public class T10_MovementPlayer : MonoBehaviour
         else if (smiley == SMILEY.SCREAM)
         {
             weapon = Weapon.DEFAULT;
-            Speed.Value *= SpeedIncrease.Value;
+            speed *= SpeedIncrease.Value;
             bullets = BULLETS.DEFAULT;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
             playerCap.sprite = emojiSprite[4];
