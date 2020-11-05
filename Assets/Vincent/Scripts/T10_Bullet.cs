@@ -51,7 +51,14 @@ public class T10_Bullet : MonoBehaviour
     {
         // Julien
         if (col.gameObject.CompareTag("Wall"))
+        {
+            if(bulletType == BULLETS.GRENADE)
+            {
+                Explode();
+            }
             Destroy(gameObject);
+        }
+           
         if (col.CompareTag("Enemy"))
         {
             T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
