@@ -16,7 +16,7 @@ class T10_CameraController : MonoBehaviour
         // Camera
         camera = GetComponent<Camera>();
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        offset = transform.position;
+        offset = new Vector3(0, 0, -10);
     }
     void Update()
     {
