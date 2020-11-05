@@ -20,7 +20,7 @@ public class T10_Bomb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        FindObjectOfType<T10_AudioManager>().Play("Boom");
         StartCoroutine("StartExplode");
     }
 
@@ -54,7 +54,8 @@ public class T10_Bomb : MonoBehaviour
     IEnumerator StartExplode()
     {
         yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<T10_AudioManager>().Play("Boom");
+        GetComponent<Collider2D>().enabled = true;
+
         timeSave = Time.time;
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         camControl.ShakeCamera(shakeDur.Value, shakeAm.Value);

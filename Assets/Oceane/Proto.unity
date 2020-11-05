@@ -1490,13 +1490,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: sniper
-    clip: {fileID: 8300000, guid: f67f8315dba877e459445452754e54ed, type: 3}
+    clip: {fileID: 8300000, guid: 0cb99f2b2b131f84caa50030d2ba47a9, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Boom
-    clip: {fileID: 8300000, guid: fc79d156935e7574e908ecfac3d264a1, type: 3}
+    clip: {fileID: 8300000, guid: 099a479fa3f79804ebf34b88c89ed816, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0

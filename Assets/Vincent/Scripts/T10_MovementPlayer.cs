@@ -497,7 +497,8 @@ public class T10_MovementPlayer : MonoBehaviour
     IEnumerator ResetFireAfterNewSmiley()
     {
         StopCoroutine("Fire");
-        yield return new WaitForSeconds(0.1f);
+        canFire = false;
+        yield return new WaitForSeconds(0.2f);
         canFire = true;
     }
     private void FaceMouse()
