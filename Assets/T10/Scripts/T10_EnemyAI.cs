@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 public class T10_EnemyAI : MonoBehaviour
 {
     public GameObject player;
@@ -37,7 +37,6 @@ public class T10_EnemyAI : MonoBehaviour
     float timer;
     //Vincent
     public bool isSlowed;
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -47,7 +46,6 @@ public class T10_EnemyAI : MonoBehaviour
     }
     void Update()
     {
-
         // Julien
         if (enemyType == EnemyType.SHOOT)
         {
@@ -93,15 +91,14 @@ public class T10_EnemyAI : MonoBehaviour
             }
         }
         EnemyDeath();
-
     }
-void EnemyDeath()
+    void EnemyDeath()
     {
         if (lifeEnemy <= 0)
         {
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
-            if(randLoot < 4)
+            if (randLoot < 4)
             {
                 if (enemyType == EnemyType.NORMAL)
                 {
@@ -110,12 +107,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
-
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.BIG)
@@ -125,11 +123,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.SMALL)
@@ -139,11 +139,13 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
+                        Destroy(newEmoji, 5);
                     }
                 }
                 else if (enemyType == EnemyType.SHOOT)
@@ -153,24 +155,23 @@ void EnemyDeath()
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        Destroy(newEmoji, 5);
                     }
                     else
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
+                        Destroy(newEmoji, 5);
                     }
                 }
             }
-            
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
-
             Debug.Log("Compteur = " + PlayerPrefs.GetInt("count"));
             count = PlayerPrefs.GetInt("count");
             count++;
             PlayerPrefs.SetInt("count", count);
             Destroy(enemyParent.gameObject);
         }
-
     }
     private void RotateGameObject(Vector3 target, float RotationSpeed, float offset)
     {
@@ -190,7 +191,6 @@ void EnemyDeath()
             lifeEnemy -= 2;
         }
     }
-
     public IEnumerator BeSlow()
     {
         speedEnemy /= 2;
@@ -199,13 +199,10 @@ void EnemyDeath()
         speedEnemy *= 2;
         isSlowed = false;
     }
-
     public IEnumerator AlreadySlowed()
     {
         yield return new WaitForSeconds(3);
         speedEnemy *= 2;
         isSlowed = false;
     }
-
-
 }

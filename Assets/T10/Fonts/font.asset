@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: 04B_30__ SDF
+  m_Name: font
   m_EditorClassIdentifier: 
-  hashCode: 1448835371
+  hashCode: 3700371
   material: {fileID: -4340610909189888466}
-  materialHashCode: 94083115
+  materialHashCode: 411039827
   m_Version: 1.1.0
   m_SourceFontFileGUID: 91f3e2605454b0a4ba1704cdf9879df6
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 91f3e2605454b0a4ba1704cdf9879df6, type: 3}
