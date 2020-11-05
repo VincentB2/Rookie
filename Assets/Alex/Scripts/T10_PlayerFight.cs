@@ -7,7 +7,7 @@ public class T10_PlayerFight : MonoBehaviour
 {
     public int playerHPValue = 3;
     public float playerHP = 0;
-    public float timerGlobalValue = 60.0f;
+    float timerGlobalValue = 0;
     public float timerGlobal;
     float timerScore;
     public GameObject textTimer;
@@ -25,9 +25,9 @@ public class T10_PlayerFight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerGlobal -= Time.deltaTime;
+        timerGlobal += Time.deltaTime;
         timerScore = (timerGlobalValue - timerGlobal) * 1000;
-        textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + timerGlobal;
+        textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + string.Format("{0:0.00}", timerGlobal);
         // Julien
         livesText.GetComponent<TextMeshProUGUI>().text = "Lives : " + playerHP;
         PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
