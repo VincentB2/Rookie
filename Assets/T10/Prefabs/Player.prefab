@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3267950279878693238}
   - component: {fileID: 3267950279878693237}
   - component: {fileID: 3267950279878693236}
+  - component: {fileID: 105971365}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -206,7 +207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHPValue: 3
   playerHP: 0
-  timerGlobalValue: 60
   timerGlobal: 0
   textTimer: {fileID: 0}
 --- !u!95 &3267950279878693237
@@ -326,6 +326,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!58 &105971365
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3267950279878693244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.09
 --- !u!1 &3267950280366787116
 GameObject:
   m_ObjectHideFlags: 0
