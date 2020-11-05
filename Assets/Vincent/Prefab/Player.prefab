@@ -148,7 +148,7 @@ MonoBehaviour:
   reculGlaceSNIPER: {fileID: 11400000, guid: bd45e1c85ef4ca640a0193a7cc9a3292, type: 2}
   PuissReculTerreSNIPER: {fileID: 11400000, guid: 1bbf7c2c3e9d5844498a5fefbd6a99e3, type: 2}
   TimeReculTerreSNIPER: {fileID: 11400000, guid: eabcbe4031b9692478d66f642a761428, type: 2}
-  lineRenderer: {fileID: 8122575735413571851}
+  lineRenderer: {fileID: 0}
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 822
@@ -164,18 +164,18 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 512
-  smiley: 3
+  smiley: 4
   SpeedIncrease: {fileID: 11400000, guid: 8a8d44de3d90d0c4eaeb6ccad2c31d46, type: 2}
   cooldownSmiley: {fileID: 11400000, guid: c1651e17f6a518b4096d72c051b564b6, type: 2}
   emojiSprite:
   - {fileID: 21300000, guid: d0242644139c71048bf91096df9e422b, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerCap: {fileID: 8122575736950336016}
+  - {fileID: 21300000, guid: b264ff89757b55d4c8856fa2d1f9fe4e, type: 3}
+  - {fileID: 21300000, guid: 77c7a1f9d109f3f4385a09037bbdbea7, type: 3}
+  - {fileID: 21300000, guid: ce68e25ef4347a444adfbdb3ed0cf552, type: 3}
+  - {fileID: 21300000, guid: 664b223c2056db24c8fee18b0623b1e4, type: 3}
+  - {fileID: 21300000, guid: 7b7e9cdd8342c6343ad1786cc778863a, type: 3}
+  - {fileID: 21300000, guid: 1c8a9cb5a7f055e49ad570be12bef4ba, type: 3}
+  playerCap: {fileID: 0}
 --- !u!58 &8122575735413571852
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@ public class T10_Bomb : MonoBehaviour
     IEnumerator StartExplode()
     {
         yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<T10_AudioManager>().Play("Boom");
         timeSave = Time.time;
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         camControl.ShakeCamera(shakeDur.Value, shakeAm.Value);

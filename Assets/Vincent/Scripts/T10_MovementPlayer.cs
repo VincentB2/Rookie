@@ -418,7 +418,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value *0.4f, ForceMode2D.Impulse);
 
-            //FindObjectOfType<T10_AudioManager>().Play("sniper");
+            FindObjectOfType<T10_AudioManager>().Play("GrenadeLauncher");
 
             yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
         }

@@ -2093,7 +2093,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: shotgun
-    clip: {fileID: 8300000, guid: 8e89354388d3fbc48a79d74083c2dca8, type: 3}
+    clip: {fileID: 8300000, guid: 07a8e992693f33c48a4fd02844148e94, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -2129,7 +2129,19 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: sniper
-    clip: {fileID: 8300000, guid: 05e73bc6033cf5f4e9b3dad8748d67c6, type: 3}
+    clip: {fileID: 8300000, guid: 9fe00df1b8ca66d4aa2e84170cc6d106, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Boom
+    clip: {fileID: 8300000, guid: fc79d156935e7574e908ecfac3d264a1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GrenadeLauncher
+    clip: {fileID: 8300000, guid: 544cb92a8b12979468e0d828f32e9996, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
