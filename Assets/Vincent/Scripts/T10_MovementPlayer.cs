@@ -211,6 +211,7 @@ public class T10_MovementPlayer : MonoBehaviour
             }
             if (!ui.isGameMenued && !ui.isGamePaused && Input.GetMouseButton(0) && canFire)
             {
+                canFire = false;
                 StartCoroutine("FireGlace");
                 actualPos = transform.position;
             }
@@ -353,7 +354,7 @@ public class T10_MovementPlayer : MonoBehaviour
     // ----------------------------------------------------------------
     IEnumerator FireGlace()
     {
-        canFire = false;
+       
         if (weapon == Weapon.DEFAULT)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -441,6 +442,7 @@ public class T10_MovementPlayer : MonoBehaviour
     {
         
         StopCoroutine("Fire");
+        StopCoroutine("FireGlace");
         canFire = false;
         StopCoroutine("CooldownSmiley");
         if (smiley == SMILEY.SLIGHTSMILE)
