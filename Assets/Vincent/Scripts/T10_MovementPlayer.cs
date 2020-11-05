@@ -124,7 +124,7 @@ public class T10_MovementPlayer : MonoBehaviour
         col = GetComponent<Collider2D>();
 
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
-        smiley = SMILEY.SMILINGIMP;
+        smiley = SMILEY.MAD;
         lastSmiley = smiley;
         WhichSmiley(smiley);
         
@@ -425,6 +425,7 @@ public class T10_MovementPlayer : MonoBehaviour
 
     public IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
     {
+        Debug.Log("Recul");
         canMove = false;
         rb.velocity = (new Vector3(targetPos.x, targetPos.y) - transform.position) * puissanceRecul;
         yield return new WaitForSeconds(timeRecul);
