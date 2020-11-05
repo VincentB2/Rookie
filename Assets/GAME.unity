@@ -25076,6 +25076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388697699}
   - component: {fileID: 388697698}
+  - component: {fileID: 388697700}
   - component: {fileID: 388697697}
   m_Layer: 0
   m_Name: AudioManager
@@ -25094,9 +25095,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b696fc2282fb9a248b01bfd081fbcb0e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -25260,7 +25261,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Boom
-    clip: {fileID: 8300000, guid: fc79d156935e7574e908ecfac3d264a1, type: 3}
+    clip: {fileID: 8300000, guid: 099a479fa3f79804ebf34b88c89ed816, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -25285,6 +25286,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388697700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388697696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb522a00aaa07d747808f221609e0242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopingPart: {fileID: 8300000, guid: bde0e67411640cf4b9ca7b22a10895d0, type: 3}
 --- !u!1001 &411735878
 PrefabInstance:
   m_ObjectHideFlags: 0

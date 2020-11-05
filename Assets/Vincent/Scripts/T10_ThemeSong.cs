@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThemeSong : MonoBehaviour
+public class T10_ThemeSong : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip loopingPart;
+    AudioSource audioSource;
+
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = loopingPart;
+            audioSource.Play();
+        }
     }
 }
