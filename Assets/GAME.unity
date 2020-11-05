@@ -20201,7 +20201,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.7
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -21008,7 +21008,7 @@ GameObject:
   - component: {fileID: 747541944}
   - component: {fileID: 747541946}
   - component: {fileID: 747541945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35261,6 +35261,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5553815118946966282, guid: ff1b248c474c6dc4d9514e55374aefb0, type: 3}
   m_PrefabInstance: {fileID: 1153148818}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1165764707
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -129.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546034, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471946193021546444, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
+      propertyPath: m_Name
+      value: Emoji
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 00c2501d656bfa241887e3ba99104b02, type: 3}
 --- !u!1 &1176061571
 GameObject:
   m_ObjectHideFlags: 0
@@ -35271,7 +35328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1176061572}
   - component: {fileID: 1176061573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36714,6 +36771,7 @@ GameObject:
   - component: {fileID: 1880414812}
   - component: {fileID: 1880414814}
   - component: {fileID: 1880414813}
+  - component: {fileID: 1880414815}
   m_Layer: 0
   m_Name: Mur
   m_TagString: Untagged
@@ -45735,6 +45793,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1880414815
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880414811}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1912975526
 GameObject:
   m_ObjectHideFlags: 0
