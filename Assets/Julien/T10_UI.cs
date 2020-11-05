@@ -21,7 +21,7 @@ class T10_UI : MonoBehaviour
         MainMenuButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
         QuitButton = GameObject.Find("QuitButton").GetComponent<Button>();
         // Listeners
-        PlayButton.onClick.AddListener(MenuGame);
+        PlayButton.onClick.AddListener(PlayGame);
         PauseButton.onClick.AddListener(PauseResumeGame);
         ResumeButton.onClick.AddListener(PauseResumeGame);
         MenuButton.onClick.AddListener(MenuGame);
@@ -38,11 +38,12 @@ class T10_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }
     void PauseResumeGame() { isGamePaused ^= true; }
-    void MenuGame() { isGameMenued ^= true; isGamePaused = false; }
+    void PlayGame() { isGameMenued ^= true; isGamePaused = false; }
+    void MenuGame() { SceneManager.LoadScene(0); }
     void MainMenuGame()
     {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("SalleArcade");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("SalleArcade");
     }
     void QuitGame() { Application.Quit(); }
 }
