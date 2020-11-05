@@ -3,38 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 public class T10_Doors : MonoBehaviour
 {
-    int i = 0;
-    public GameObject[] doors;
-    public int compteur = 2;
-    public int compteurAfter = 15;
-    // Start is called before the first frame update
-    void Start() { }
-    // Update is called once per frame
-    void Update()
+    public T10_IntVariable enemiesDead;
+    public T10_Doors doors;
+    public enum DOORS {UN, DEUX, TROIS, QUATRE, CINQ}
+    public DOORS doorID;
+    public List<int> goal = new List<int>();
+    public List<bool> isOpen = new List<bool>();
+
+
+    private void Update()
     {
-        if (i < doors.Length)
+        if (doorID == DOORS.UN)
         {
-            if (PlayerPrefs.GetInt("count") >= compteur)
+            if (isOpen[0])
             {
-                if (i == 0)
+                if (enemiesDead.Value >= goal[0])
                 {
-                    doors[i].SetActive(false);
-                    compteur = compteurAfter;
+                    gameObject.SetActive(false);
                 }
-                else if (i > 0)
-                {
-                    doors[i - 1].SetActive(true);
-                    doors[i].SetActive(false);
-                }
-                i++;
             }
         }
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
+        else if (doorID == DOORS.DEUX)
         {
-            PlayerPrefs.SetInt("count", 0);
+            if (isOpen[1])
+            {
+                if (enemiesDead.Value == goal[1])
+                {
+                    gameObject.SetActive(false);
+                }
+            }
         }
+        else if (doorID == DOORS.TROIS)
+        {
+            if (isOpen[2])
+            {
+                if (enemiesDead.Value == goal[2])
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (doorID == DOORS.QUATRE)
+        {
+            if (isOpen[3])
+            {
+                if (enemiesDead.Value == goal[3])
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (doorID == DOORS.CINQ)
+        {
+            if (isOpen[4])
+            {
+                if (enemiesDead.Value == goal[4])
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+
+
     }
 }

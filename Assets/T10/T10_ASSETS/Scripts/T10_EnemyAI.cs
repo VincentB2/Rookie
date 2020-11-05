@@ -35,11 +35,14 @@ public class T10_EnemyAI : MonoBehaviour
         enemyShootProjectileSpeed = 5,
         enemyShootFrequency = .5F;
     float timer;
+    
     //Vincent
     public bool isSlowed;
+    private GameObject enemyCount;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        enemyCount = GameObject.Find("EnemyCount");
         // Look At
         if (player)
             target = player.GetComponent<Transform>();
@@ -167,9 +170,7 @@ public class T10_EnemyAI : MonoBehaviour
             }
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
             Debug.Log("Compteur = " + PlayerPrefs.GetInt("count"));
-            count = PlayerPrefs.GetInt("count");
-            count++;
-            PlayerPrefs.SetInt("count", count);
+            enemyCount.GetComponent<T10_EnemyCount>().EnemiesDead.Value++;
             Destroy(enemyParent.gameObject);
         }
     }
