@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class T10_Bomb : MonoBehaviour
 {
-
+    private Animator camera;
     public FloatVariable duration;
     private float timeSave = 0;
     public FloatVariable rangeIncrease;
@@ -21,6 +21,7 @@ public class T10_Bomb : MonoBehaviour
     void Start()
     {
         FindObjectOfType<T10_AudioManager>().Play("Boom");
+        camera = GameObject.Find("Camera").GetComponent<Animator>();
         StartCoroutine("StartExplode");
     }
 
@@ -45,6 +46,7 @@ public class T10_Bomb : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            camera.SetTrigger("bomb");
             T10_EnemyAI scriptEnemy = collision.gameObject.GetComponent<T10_EnemyAI>();
             scriptEnemy.lifeEnemy -= damages;
             

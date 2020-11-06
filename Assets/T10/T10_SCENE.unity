@@ -58293,6 +58293,10 @@ PrefabInstance:
       propertyPath: playerHPValue
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3267950279878693238, guid: 40ef19ee8b62d32459b3ae1f39e9fcff, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1669250203}
     - target: {fileID: 3267950279878693239, guid: 40ef19ee8b62d32459b3ae1f39e9fcff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -142.13
