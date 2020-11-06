@@ -307,7 +307,7 @@ public class T10_MovementPlayer : MonoBehaviour
             Vector2 bulletPos = cellScreenPosition + direction1;
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
-            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+            FindObjectOfType<T10_AudioManager>().Play("coldgun");
             yield return new WaitForSeconds(cadenceDEFAULT.Value * 0.7f / cadenceGenerale.Value);
         }
         else if (weapon == Weapon.MITRAILLETTE)
@@ -411,7 +411,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
             rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
-            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+            FindObjectOfType<T10_AudioManager>().Play("coldgun");
             yield return new WaitForSeconds(cadenceDEFAULT.Value *0.7f/ cadenceGenerale.Value);
         }
         else if (weapon == Weapon.MITRAILLETTE)
