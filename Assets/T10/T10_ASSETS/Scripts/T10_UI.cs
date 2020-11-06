@@ -52,7 +52,7 @@ class T10_UI : MonoBehaviour
         InGameLayer.SetActive(!isGameMenued && !isGamePaused && !Player.isEndMenued);
         PauseLayer.SetActive(!isGameMenued && isGamePaused && !Player.isEndMenued);
         MenuLayerEnd.SetActive(!isGameMenued && !isGamePaused && Player.isEndMenued);
-        ScoreText.GetComponent<TextMeshProUGUI>().text = "Your score : " + PlayerPrefs.GetInt("ScoreTeam10");
+        ScoreText.GetComponent<TextMeshProUGUI>().text = "Your score : " + Player.timerScore;
 
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }

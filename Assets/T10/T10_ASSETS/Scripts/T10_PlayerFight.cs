@@ -9,7 +9,7 @@ public class T10_PlayerFight : MonoBehaviour
     public float playerHP = 0;
     float timerGlobalValue = 0;
     public float timerGlobal;
-    float timerScore;
+    public float timerScore;
     public GameObject textTimer;
     // MENU
     public bool isEndMenued;
