@@ -492,7 +492,7 @@ public class T10_MovementPlayer : MonoBehaviour
         {
             weapon = Weapon.SHOTGUN;
             bullets = BULLETS.DEFAULT;
-            bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.DEFAULT;
+            bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.SHOTGUN;
             playerCap.sprite = emojiSprite[2];
         }
         else if (smiley == SMILEY.COLDFACE)

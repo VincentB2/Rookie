@@ -123,7 +123,7 @@ public class T10_EnemyAI : MonoBehaviour
                 else if (enemyType == EnemyType.BIG)
                 {
                     GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
-                    if (randBig < 4)
+                    if (randBig < 3)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
