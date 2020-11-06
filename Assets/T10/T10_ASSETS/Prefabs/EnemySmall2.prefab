@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9007925738389987753}
   - component: {fileID: 9007925738389987752}
   m_Layer: 0
-  m_Name: EnemySmallImage
+  m_Name: EnemySmall2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +56,7 @@ MonoBehaviour:
   rangeEnemy: 15
   lifeEnemy: 1
   damageEnemy: 2
+  heartList: {fileID: 6427486488545959653, guid: 70c7753f5e52d5b4ea1322886262ba5b, type: 3}
   enemyShootProjectile: {fileID: 255802627530620210, guid: ed7607bec87ca9945aadb610f26a01fe, type: 3}
   rangeEnemyShoot: 10
   enemyShootForce: 1

@@ -19,7 +19,10 @@ public class T10_EnemyAI : MonoBehaviour
     public float speedEnemy = 1.5f;
     public float rangeEnemy = 4.0f;
     public int lifeEnemy = 1;
+    private int lastFrameLife;
     public int damageEnemy = 1;
+    public GameObject heartList;
+    private GameObject hearts;
     // Julien
     Transform target;
     Vector3 thisPos;
@@ -40,14 +43,33 @@ public class T10_EnemyAI : MonoBehaviour
     private GameObject enemyCount;
     void Start()
     {
+        hearts = Instantiate(heartList, transform.position + new Vector3(0, 1), heartList.transform.rotation);
+        for (int i = 0; i < lifeEnemy; i++) {
+            hearts.GetComponent<T10_LifeEnemy>().AddHeart();
+        }
+        hearts.GetComponent<T10_LifeEnemy>().SetHearts();
+        hearts.transform.position = transform.position + new Vector3(-0.1f, 0.5f);
         player = GameObject.FindGameObjectWithTag("Player");
         enemyCount = GameObject.Find("EnemyCount");
         // Look At
         if (player)
+        {
             target = player.GetComponent<Transform>();
+        }
+
+        lastFrameLife = lifeEnemy;
     }
     void Update()
     {
+        hearts.transform.position = transform.position + new Vector3(-0.1f, 0.6f);
+        if(lifeEnemy != lastFrameLife)
+        {
+            int damages = lastFrameLife - lifeEnemy;
+            for (int i = 0; i < damages; i++)
+            {
+                hearts.GetComponent<T10_LifeEnemy>().RemoveHearts();
+            }
+        }
         // Julien
         if (enemyType == EnemyType.SHOOT)
         {
@@ -96,12 +118,15 @@ public class T10_EnemyAI : MonoBehaviour
 
             }
         }
+        lastFrameLife = lifeEnemy;
         EnemyDeath();
     }
     void EnemyDeath()
     {
+       
         if (lifeEnemy <= 0)
         {
+            Destroy(hearts);
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
             int randBig = Random.Range(0, 5);

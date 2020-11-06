@@ -22,19 +22,19 @@ public class T10_HealthEnemy : MonoBehaviour
     {
 
         //-----------------------------HEALTH ENEMY-----------------------------
-        for (int i = 0; i < hearts.Length; i++)
-         {
+        //for (int i = 0; i < hearts.Length; i++)
+        // {
 
-         if(i < enemy.lifeEnemy)
-             {
-                 hearts[i].enabled = true;
-                 heartsGO[i].SetActive(true);
-             }
-             else
-             {
-                 hearts[i].enabled = false;
-                 heartsGO[i].SetActive(false);
-             }
-         }
+        // if(i < enemy.lifeEnemy)
+        //     {
+        //         hearts[i].enabled = true;
+        //         heartsGO[i].SetActive(true);
+        //     }
+        //     else
+        //     {
+        //         hearts[i].enabled = false;
+        //         heartsGO[i].SetActive(false);
+        //     }
+         //}
     }
 }
