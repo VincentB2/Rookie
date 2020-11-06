@@ -13,7 +13,7 @@ public class T10_PlayerFight : MonoBehaviour
     public GameObject textTimer;
     // MENU
     public bool isEndMenued;
-    public GameObject flagEnd;
+    public Animator camera;
     // Julien
     GameObject livesText;
     // Start is called before the first frame update
@@ -24,7 +24,6 @@ public class T10_PlayerFight : MonoBehaviour
         textTimer = GameObject.Find("/UI/InGameLayer/timer");
         // Julien
         livesText = GameObject.Find("lives");
-        flagEnd = GameObject.Find("End");
     }
     // Update is called once per frame
     void Update()
@@ -42,6 +41,7 @@ public class T10_PlayerFight : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerHP -= damage;
+        camera.SetTrigger("playerHit");
     }
 
     private void OnTriggerEnter2D(Collider2D col)

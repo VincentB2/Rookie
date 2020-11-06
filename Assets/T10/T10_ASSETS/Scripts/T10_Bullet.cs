@@ -13,8 +13,10 @@ public class T10_Bullet : MonoBehaviour
     public GameObject bomb;
     private bool canExplode = true;
     public FloatVariable delayBeforeExplosion;
+    public Animator camera;
     void Awake()
     {
+        camera = GameObject.Find("Camera").GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         if (bulletType == BULLETS.SNIPER)
@@ -43,10 +45,7 @@ public class T10_Bullet : MonoBehaviour
             Explode();
         }
     }
-    public void TakeDamage(float life, float dmg)
-    {
-        life -= dmg;
-    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Julien
@@ -61,6 +60,7 @@ public class T10_Bullet : MonoBehaviour
            
         if (col.CompareTag("Enemy"))
         {
+            camera.SetTrigger("enemyHit");
             T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
             scriptEnemy.lifeEnemy -= damageBullet;
             camControl.ShakeCamera(shakeDur, shakeAm);
