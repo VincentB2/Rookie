@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,27 +11,31 @@ public class T10_EnemySpawn : MonoBehaviour
     private float timeBeforeSpawn;
     public GameObject enemyType;
     public GameObject door;
-    public T10_IntVariable enemiesDead;
+    public T10_IntVariable nbrEnemySpawn;
     private int enemyToKill;
+    
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        nbrEnemySpawn.Value = 0;
+       player = GameObject.FindGameObjectWithTag("Player");
         timeBeforeSpawn = timeBeforeSpawnValue;
-        enemyToKill = door.GetComponent<T10_Doors>().goal;
+        enemyToKill = door.GetComponent<T10_Doors>().goal - door.GetComponent<T10_Doors>().numberOfSniper;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemiesDead.Value < enemyToKill)
+        if (nbrEnemySpawn.Value < enemyToKill)
         {
+            
             if ((player.transform.position - transform.position).magnitude <= rangeSpawn)
             {
                 if (timeBeforeSpawn <= 0)
                 {
                     Instantiate(enemyType, transform.position, transform.rotation);
                     timeBeforeSpawn = timeBeforeSpawnValue;
+                    nbrEnemySpawn.Value++;
                 }
                 else
                 {
@@ -38,14 +43,9 @@ public class T10_EnemySpawn : MonoBehaviour
                 }
             }
         }
+        Debug.Log(enemyToKill);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, rangeSpawn);
-    }
 }
 
 

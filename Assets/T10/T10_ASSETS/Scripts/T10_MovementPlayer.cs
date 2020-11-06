@@ -361,7 +361,6 @@ public class T10_MovementPlayer : MonoBehaviour
     }
     public IEnumerator Recul(Vector2 targetPos, float timeRecul, float puissanceRecul)
     {
-        Debug.Log("Recul");
         canMove = false;
         rb.velocity = (new Vector3(targetPos.x, targetPos.y) - transform.position) * puissanceRecul;
         yield return new WaitForSeconds(timeRecul);
