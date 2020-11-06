@@ -17,7 +17,7 @@ public class T10_MovementPlayer : MonoBehaviour
     private Vector2 direction;
     [Header("FIRE")]
     public GameObject Arrow;
-    public enum Weapon { DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE }
+    public enum Weapon { DEFAULT, MITRAILLETTE, SHOTGUN, SNIPER, GRENADE, COLD }
     public Weapon weapon;
     // --------------------GUNS
     private bool canFire = true;
@@ -281,6 +281,19 @@ public class T10_MovementPlayer : MonoBehaviour
             FindObjectOfType<T10_AudioManager>().Play("SMGShot");
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
         }
+        if (weapon == Weapon.COLD)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction1 = mousePos - transform.position;
+            direction1 = direction.normalized;
+            direction1 *= transform.localScale.x / (2 * transform.localScale.x);
+            Vector2 cellScreenPosition = transform.position;
+            Vector2 bulletPos = cellScreenPosition + direction1;
+            GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
+            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+            yield return new WaitForSeconds(cadenceDEFAULT.Value * 0.7f / cadenceGenerale.Value);
+        }
         else if (weapon == Weapon.MITRAILLETTE)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -371,6 +384,20 @@ public class T10_MovementPlayer : MonoBehaviour
             rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
             FindObjectOfType<T10_AudioManager>().Play("SMGShot");
             yield return new WaitForSeconds(cadenceDEFAULT.Value / cadenceGenerale.Value);
+        }
+        else if (weapon == Weapon.COLD)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction1 = mousePos - transform.position;
+            direction1 = direction.normalized;
+            direction1 *= transform.localScale.x / (2 * transform.localScale.x);
+            Vector2 cellScreenPosition = transform.position;
+            Vector2 bulletPos = cellScreenPosition + direction1;
+            GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value, ForceMode2D.Impulse);
+            rb.AddForce(-direction * reculGlaceDEFAULT.Value, ForceMode2D.Impulse);
+            FindObjectOfType<T10_AudioManager>().Play("SMGShot");
+            yield return new WaitForSeconds(cadenceDEFAULT.Value *0.7f/ cadenceGenerale.Value);
         }
         else if (weapon == Weapon.MITRAILLETTE)
         {
@@ -470,7 +497,7 @@ public class T10_MovementPlayer : MonoBehaviour
         }
         else if (smiley == SMILEY.COLDFACE)
         {
-            weapon = Weapon.DEFAULT;
+            weapon = Weapon.COLD;
             bullets = BULLETS.GLACE;
             bulletInUse.GetComponent<T10_Bullet>().bulletType = T10_Bullet.BULLETS.GLACE;
             playerCap.sprite = emojiSprite[3];
