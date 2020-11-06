@@ -49,7 +49,7 @@ public class T10_PlayerFight : MonoBehaviour
         if (col.gameObject.name.Contains("End")) 
         {
 
-            timerScore = 5000 - timerGlobal * 50;
+            timerScore = 5000 - timerGlobal * 20;
             Debug.Log(timerScore);
             PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
             isEndMenued = true;
