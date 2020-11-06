@@ -41,6 +41,7 @@ public class T10_EnemyAI : MonoBehaviour
     //Vincent
     public bool isSlowed;
     private GameObject enemyCount;
+    private bool canLoot = true;
     void Start()
     {
         hearts = Instantiate(heartList, transform.position + new Vector3(0, 1), heartList.transform.rotation);
@@ -131,70 +132,72 @@ public class T10_EnemyAI : MonoBehaviour
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
             int randBig = Random.Range(0, 5);
-            if (randLoot < 4)
-            {
-                if (enemyType == EnemyType.NORMAL)
+            if (canLoot) {
+                if (randLoot < 4)
                 {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
-                    if (randEmoji == 0)
+                    if (enemyType == EnemyType.NORMAL)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
-                        Destroy(newEmoji, 10);
+                        GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                        if (randEmoji == 0)
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[2];
+                            Destroy(newEmoji, 10);
+                        }
+                        else
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
+                            Destroy(newEmoji, 10);
+                        }
                     }
-                    else
+                    else if (enemyType == EnemyType.BIG)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Joy;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[3];
-                        Destroy(newEmoji, 10);
+                        GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                        if (randBig < 3)
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
+                            Destroy(newEmoji, 10);
+                        }
+                        else
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                            Destroy(newEmoji, 10);
+                        }
                     }
-                }
-                else if (enemyType == EnemyType.BIG)
-                {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
-                    if (randBig < 3)
+                    else if (enemyType == EnemyType.SMALL)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
-                        Destroy(newEmoji, 10);
+                        GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                        if (randEmoji == 0)
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
+                            Destroy(newEmoji, 10);
+                        }
+                        else
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
+                            Destroy(newEmoji, 10);
+                        }
                     }
-                    else
+                    else if (enemyType == EnemyType.SHOOT)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
-                        Destroy(newEmoji, 10);
-                    }
-                }
-                else if (enemyType == EnemyType.SMALL)
-                {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
-                    if (randEmoji == 0)
-                    {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
-                        Destroy(newEmoji, 10);
-                    }
-                    else
-                    {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Scream;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[1];
-                        Destroy(newEmoji, 10);
-                    }
-                }
-                else if (enemyType == EnemyType.SHOOT)
-                {
-                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
-                    if (randEmoji == 0)
-                    {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
-                        Destroy(newEmoji, 10);
-                    }
-                    else
-                    {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
-                        Destroy(newEmoji, 10);
+                        GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                        if (randEmoji == 0)
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
+                            Destroy(newEmoji, 10);
+                        }
+                        else
+                        {
+                            newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                            newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
+                            Destroy(newEmoji, 10);
+                        }
                     }
                 }
             }
@@ -219,6 +222,10 @@ public class T10_EnemyAI : MonoBehaviour
         {
             col.gameObject.GetComponent<T10_PlayerFight>().TakeDamage(damageEnemy);
             lifeEnemy -= 2;
+            if(lifeEnemy <= 0)
+            {
+                canLoot = false;
+            }
         }
     }
     public IEnumerator BeSlow()
