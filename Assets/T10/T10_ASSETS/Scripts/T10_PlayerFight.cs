@@ -30,11 +30,9 @@ public class T10_PlayerFight : MonoBehaviour
     void Update()
     {
         timerGlobal += Time.deltaTime;
-        timerScore = 5000 - timerGlobal * 50;
         textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + string.Format("{0:0.00}", timerGlobal);
         // Julien
         livesText.GetComponent<TextMeshProUGUI>().text = "Lives : " + playerHP;
-        PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
         if (playerHP <= 0)
         {
             playerHP = 0;
@@ -50,6 +48,10 @@ public class T10_PlayerFight : MonoBehaviour
     {
         if (col.gameObject.name.Contains("End")) 
         {
+
+            timerScore = 5000 - timerGlobal * 50;
+            Debug.Log(timerScore);
+            PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
             isEndMenued = true;
         }
     }
