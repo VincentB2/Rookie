@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &4092039 stripped
@@ -601,6 +605,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -134.44
@@ -1050,6 +1058,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1490255946}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &177235539 stripped
@@ -1120,6 +1132,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1490255946}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &207057563 stripped
@@ -25990,6 +26006,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1360814957}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &243116955 stripped
@@ -26229,6 +26249,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1490255946}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -59.47
@@ -26819,6 +26843,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 406809546}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &408511719 stripped
@@ -27148,6 +27176,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1490255946}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -35.49
@@ -27288,6 +27320,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1360814957}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: rangeSpawn
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -79.56
@@ -27681,6 +27717,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &471846727 stripped
@@ -55017,6 +55057,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &891208447 stripped
@@ -55245,6 +55289,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1490255946}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.5
@@ -56617,6 +56665,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 406809546}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &1339851618 stripped
@@ -57074,6 +57126,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -101.41
@@ -57210,6 +57266,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: rangeSpawn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -129.4
@@ -57509,6 +57569,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1360814957}
+    - target: {fileID: 4104442493588559119, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
+      propertyPath: rangeSpawn
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce893e60be0c3d41b1a577923bdeebc, type: 3}
 --- !u!4 &1501116525 stripped
@@ -57714,6 +57778,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 115923819}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -121.44
@@ -57780,6 +57848,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 406809546}
+    - target: {fileID: 4436438332903530253, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4436438332903530255, guid: 3d3bb22b2175cd34dbbd033fa00aec48, type: 3}
       propertyPath: m_LocalPosition.x
       value: -44.54
@@ -59589,6 +59661,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 406809546}
+    - target: {fileID: 6734025966206033827, guid: 2a202775bffa51241b80872f9195beff, type: 3}
+      propertyPath: rangeSpawn
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6734025966206033829, guid: 2a202775bffa51241b80872f9195beff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.5
