@@ -78,6 +78,8 @@ public class T10_MovementPlayer : MonoBehaviour
     private bool canDash = true;
     public FloatVariable dashDelay;
     public GameObject shield;
+    public GameObject shieldConsumedUI;
+    public GameObject shieldUI;
     // ------------------------------- SOL
     [HideInInspector]
     public bool isGlace = false;
@@ -116,6 +118,8 @@ public class T10_MovementPlayer : MonoBehaviour
         lastSmiley = smiley;
         WhichSmiley(smiley);
         speed = Speed.Value;
+        shieldConsumedUI.SetActive(true);
+        shieldUI.SetActive(true);
     }
     // Update is called once per frame
     void Update()
@@ -261,6 +265,7 @@ public class T10_MovementPlayer : MonoBehaviour
     {
         canDash = false;
         shield.SetActive(true);
+        shieldUI.SetActive(false);
         Physics2D.IgnoreLayerCollision(9, 10, true);
         FindObjectOfType<T10_AudioManager>().Play("shield");
         speed *= 3;
@@ -270,7 +275,9 @@ public class T10_MovementPlayer : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreLayerCollision(9, 10, false);
         shield.SetActive(false);
+
         yield return new WaitForSeconds(dashDelay.Value);
+        shieldUI.SetActive(true);
 
         canDash = true;
         //yield return new

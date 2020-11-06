@@ -11,6 +11,7 @@ class T10_UI : MonoBehaviour
     Button RetryButtonEnd, MainMenuButtonEnd, QuitButtonEnd;
     GameObject ScoreText, MenuLayerEnd;
     T10_PlayerFight Player;
+    public GameObject playerGO;
     void Awake()
     {
         // Layers
@@ -56,7 +57,7 @@ class T10_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }
     void PauseResumeGame() { isGamePaused ^= true; }
-    void PlayGame() { isGameMenued ^= true; isGamePaused = false; }
+    void PlayGame() { isGameMenued ^= true; isGamePaused = false; playerGO.GetComponent<T10_MovementPlayer>().enabled = true; }
     void MenuGame() { SceneManager.LoadScene("T10_SCENE"); PlayerPrefs.SetInt("ScoreTeam10", 0); }
     void MainMenuGame()
     {
