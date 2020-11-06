@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553815118102377922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.16, z: 12.9982395}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 5553815118946966282}
@@ -132,7 +132,6 @@ MonoBehaviour:
   lifeEnemy: 2
   damageEnemy: 2
   enemyShootProjectile: {fileID: 255802627530620210, guid: ed7607bec87ca9945aadb610f26a01fe, type: 3}
-  enemyParent: {fileID: 5553815118946966282}
   rangeEnemyShoot: 10
   enemyShootForce: 1
   enemyShootReactivity: 5
@@ -657,6 +656,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.46, y: -4.29, z: 0}
   m_LocalPosition: {x: -11.46, y: -4.29, z: -12.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5553815118102377949}

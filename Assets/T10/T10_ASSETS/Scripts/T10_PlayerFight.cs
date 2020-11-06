@@ -11,6 +11,9 @@ public class T10_PlayerFight : MonoBehaviour
     public float timerGlobal;
     float timerScore;
     public GameObject textTimer;
+    // MENU
+    public bool isEndMenued;
+    public Animator camera;
     // Julien
     GameObject livesText;
     // Start is called before the first frame update
@@ -26,11 +29,9 @@ public class T10_PlayerFight : MonoBehaviour
     void Update()
     {
         timerGlobal += Time.deltaTime;
-        timerScore = (timerGlobalValue - timerGlobal) * 1000;
         textTimer.GetComponent<TextMeshProUGUI>().text = "Time : " + string.Format("{0:0.00}", timerGlobal);
         // Julien
         livesText.GetComponent<TextMeshProUGUI>().text = "Lives : " + playerHP;
-        PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
         if (playerHP <= 0)
         {
             playerHP = 0;
@@ -40,5 +41,18 @@ public class T10_PlayerFight : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerHP -= damage;
+        camera.SetTrigger("playerHit");
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name.Contains("End")) 
+        {
+
+            timerScore = 5000 - timerGlobal * 20;
+            Debug.Log(timerScore);
+            PlayerPrefs.SetFloat("ScoreTeam10", timerScore);
+            isEndMenued = true;
+        }
     }
 }

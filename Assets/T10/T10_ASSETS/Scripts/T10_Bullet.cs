@@ -5,7 +5,7 @@ public class T10_Bullet : MonoBehaviour
 {
     GameObject player;
     public int damageBullet = 2;
-    public enum BULLETS { DEFAULT, GLACE, SNIPER, GRENADE }
+    public enum BULLETS { DEFAULT, SHOTGUN, GLACE, SNIPER, GRENADE }
     public BULLETS bulletType;
     T10_CameraController camControl;
     public float shakeDur = 0.1f;
@@ -13,8 +13,10 @@ public class T10_Bullet : MonoBehaviour
     public GameObject bomb;
     private bool canExplode = true;
     public FloatVariable delayBeforeExplosion;
+    public Animator camera;
     void Awake()
     {
+        camera = GameObject.Find("Camera").GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         camControl = GameObject.Find("/Camera").GetComponent<T10_CameraController>();
         if (bulletType == BULLETS.SNIPER)
@@ -26,14 +28,15 @@ public class T10_Bullet : MonoBehaviour
             damageBullet = 0;
             StartCoroutine("ExplodeAfterDelay");
         }
+        else if (bulletType == BULLETS.GLACE)
+        {
+            GetComponent<SpriteRenderer>().color = Color.blue;
+        }
         else
         {
             damageBullet = 1;
         }
-        if (bulletType == BULLETS.GLACE)
-        {
-            GetComponent<SpriteRenderer>().color = Color.blue;
-        }
+        
         Destroy(gameObject, 2);
     }
     private void Update()
@@ -43,10 +46,7 @@ public class T10_Bullet : MonoBehaviour
             Explode();
         }
     }
-    public void TakeDamage(float life, float dmg)
-    {
-        life -= dmg;
-    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Julien
@@ -61,9 +61,20 @@ public class T10_Bullet : MonoBehaviour
            
         if (col.CompareTag("Enemy"))
         {
+            camera.SetTrigger("enemyHit");
             T10_EnemyAI scriptEnemy = col.gameObject.GetComponent<T10_EnemyAI>();
             scriptEnemy.lifeEnemy -= damageBullet;
             camControl.ShakeCamera(shakeDur, shakeAm);
+
+            // anim camera
+            if (bulletType != BULLETS.GRENADE && bulletType != BULLETS.SHOTGUN) {
+                camera.SetTrigger("enemyHit");
+            }
+            else if (bulletType == BULLETS.SHOTGUN)
+            {
+                camera.SetTrigger("shotgun");
+            }
+
             if (bulletType == BULLETS.GLACE)
             {
                 if (!scriptEnemy.isSlowed)

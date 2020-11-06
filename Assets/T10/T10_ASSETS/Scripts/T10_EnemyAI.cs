@@ -19,7 +19,10 @@ public class T10_EnemyAI : MonoBehaviour
     public float speedEnemy = 1.5f;
     public float rangeEnemy = 4.0f;
     public int lifeEnemy = 1;
+    private int lastFrameLife;
     public int damageEnemy = 1;
+    public GameObject heartList;
+    private GameObject hearts;
     // Julien
     Transform target;
     Vector3 thisPos;
@@ -28,52 +31,73 @@ public class T10_EnemyAI : MonoBehaviour
     // EnemyShoot
     [Header("EnemyShoot")]
     public GameObject enemyShootProjectile;
-    public Transform enemyParent;
     public float rangeEnemyShoot = 10.0f;
     public float enemyShootForce = 1,
         enemyShootReactivity = 50f,
         enemyShootProjectileSpeed = 5,
         enemyShootFrequency = .5F;
     float timer;
+    
     //Vincent
     public bool isSlowed;
+    private GameObject enemyCount;
     void Start()
     {
+        hearts = Instantiate(heartList, transform.position + new Vector3(0, 1), heartList.transform.rotation);
+        for (int i = 0; i < lifeEnemy; i++) {
+            hearts.GetComponent<T10_LifeEnemy>().AddHeart();
+        }
+        hearts.GetComponent<T10_LifeEnemy>().SetHearts();
+        hearts.transform.position = transform.position + new Vector3(-0.1f, 0.5f);
         player = GameObject.FindGameObjectWithTag("Player");
+        enemyCount = GameObject.Find("EnemyCount");
         // Look At
         if (player)
+        {
             target = player.GetComponent<Transform>();
+        }
+
+        lastFrameLife = lifeEnemy;
     }
     void Update()
     {
+        hearts.transform.position = transform.position + new Vector3(-0.1f, 0.6f);
+        if(lifeEnemy != lastFrameLife)
+        {
+            int damages = lastFrameLife - lifeEnemy;
+            for (int i = 0; i < damages; i++)
+            {
+                hearts.GetComponent<T10_LifeEnemy>().RemoveHearts();
+            }
+        }
         // Julien
         if (enemyType == EnemyType.SHOOT)
         {
             // Look At
-            if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemy && (player.transform.position - enemyParent.position).magnitude > rangeEnemyShoot)
+            if ((player.transform.position - transform.position).magnitude <= rangeEnemy && (player.transform.position - transform.position).magnitude > rangeEnemyShoot)
             {
-                thisPos = enemyParent.position;
+                thisPos = transform.position;
                 targetPos = target.position;
                 targetPos.x = targetPos.x - thisPos.x;
                 targetPos.y = targetPos.y - thisPos.y;
                 angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
-                enemyParent.position = Vector2.MoveTowards(enemyParent.position, target.position, speedEnemy * Time.deltaTime);
+                base.transform.rotation = Quaternion.Lerp(base.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speedEnemy * Time.deltaTime);
             }
-            else if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemyShoot)
+            else if ((player.transform.position - transform.position).magnitude <= rangeEnemyShoot)
             {
-                thisPos = enemyParent.position;
+                thisPos = transform.position;
                 targetPos = target.position;
                 targetPos.x = targetPos.x - thisPos.x;
                 targetPos.y = targetPos.y - thisPos.y;
                 angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
+                base.transform.rotation = Quaternion.Lerp(base.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), Time.deltaTime * enemyShootReactivity);
                 if (enemyShootProjectile)
                 {
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
-                        GameObject projectile = Instantiate(enemyShootProjectile, enemyParent.position, transform.rotation);
+                        GameObject projectile = Instantiate(enemyShootProjectile, transform.position, base.transform.rotation);
                         projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyShootProjectileSpeed * 100);
                         projectile.GetComponent<T10_Projectile>().enemyShootDamage = damageEnemy;
                         timer = enemyShootFrequency;
@@ -83,26 +107,35 @@ public class T10_EnemyAI : MonoBehaviour
         }
         else
         {
+            Debug.Log((player.transform.position - transform.position).magnitude);
             // Alex
-            if ((player.transform.position - enemyParent.position).magnitude <= rangeEnemy && enemyType != EnemyType.SHOOT)
+            if ((player.transform.position - transform.position).magnitude <= rangeEnemy && enemyType != EnemyType.SHOOT)
             {
                 RotateGameObject(player.transform.position, 50f, -90f);
-                enemyParent.position = Vector2.MoveTowards(enemyParent.position, target.position, speedEnemy * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(transform.position, target.position, speedEnemy * Time.deltaTime);
+                GetComponent<Rigidbody2D>().velocity = (target.position - transform.position).normalized * speedEnemy;
+                Debug.Log("should run");
+
             }
         }
+        lastFrameLife = lifeEnemy;
         EnemyDeath();
     }
     void EnemyDeath()
     {
+       
         if (lifeEnemy <= 0)
         {
+            Destroy(hearts);
+            enemyCount.GetComponent<T10_EnemyCount>().EnemiesDead.Value++;
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
+            int randBig = Random.Range(0, 5);
             if (randLoot < 4)
             {
                 if (enemyType == EnemyType.NORMAL)
                 {
-                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
+                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
                     if (randEmoji == 0)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.HeartEyes;
@@ -118,8 +151,8 @@ public class T10_EnemyAI : MonoBehaviour
                 }
                 else if (enemyType == EnemyType.BIG)
                 {
-                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
-                    if (randEmoji == 0)
+                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
+                    if (randBig < 3)
                     {
                         newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Rage;
                         newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[4];
@@ -134,11 +167,11 @@ public class T10_EnemyAI : MonoBehaviour
                 }
                 else if (enemyType == EnemyType.SMALL)
                 {
-                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
+                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.ColdFace;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[0];
                         Destroy(newEmoji, 5);
                     }
                     else
@@ -150,11 +183,11 @@ public class T10_EnemyAI : MonoBehaviour
                 }
                 else if (enemyType == EnemyType.SHOOT)
                 {
-                    GameObject newEmoji = Instantiate(emoji, enemyParent.position, enemyParent.rotation);
+                    GameObject newEmoji = Instantiate(emoji, transform.position, transform.rotation);
                     if (randEmoji == 0)
                     {
-                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.Mad;
-                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[6];
+                        newEmoji.GetComponent<T10_Emoji>().emojiType = T10_Emoji.Type.SmilingImp;
+                        newEmoji.GetComponent<SpriteRenderer>().sprite = newEmoji.GetComponent<T10_Emoji>().emojiSprite[7];
                         Destroy(newEmoji, 5);
                     }
                     else
@@ -166,22 +199,19 @@ public class T10_EnemyAI : MonoBehaviour
                 }
             }
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
-            Debug.Log("Compteur = " + PlayerPrefs.GetInt("count"));
-            count = PlayerPrefs.GetInt("count");
-            count++;
-            PlayerPrefs.SetInt("count", count);
-            Destroy(enemyParent.gameObject);
+            
+            Destroy(transform.gameObject);
         }
     }
     private void RotateGameObject(Vector3 target, float RotationSpeed, float offset)
     {
-        Vector3 dir = target - transform.position;
+        Vector3 dir = target - base.transform.position;
         //get the angle from current direction facing to desired target
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         //set the angle into a quaternion + sprite offset depending on initial sprite facing direction
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
         //Roatate current game object to face the target using a slerp function which adds some smoothing to the move
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, RotationSpeed * Time.deltaTime);
+        base.transform.rotation = Quaternion.Slerp(base.transform.rotation, rotation, RotationSpeed * Time.deltaTime);
     }
     public void OnTriggerEnter2D(Collider2D col)
     {
