@@ -77,6 +77,7 @@ public class T10_MovementPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private bool canDash = true;
     public FloatVariable dashDelay;
+    public GameObject shield;
     // ------------------------------- SOL
     [HideInInspector]
     public bool isGlace = false;
@@ -259,10 +260,18 @@ public class T10_MovementPlayer : MonoBehaviour
     IEnumerator Dash()
     {
         canDash = false;
+        shield.SetActive(true);
+        Physics2D.IgnoreLayerCollision(9, 10, true);
+        FindObjectOfType<T10_AudioManager>().Play("shield");
         speed *= 3;
         yield return new WaitForSeconds(0.3f);
         speed /= 3;
+        shield.GetComponent<Animator>().SetTrigger("end");
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreLayerCollision(9, 10, false);
+        shield.SetActive(false);
         yield return new WaitForSeconds(dashDelay.Value);
+
         canDash = true;
         //yield return new
     }
@@ -462,7 +471,7 @@ public class T10_MovementPlayer : MonoBehaviour
             GameObject newBullet = Instantiate(bulletInUse, bulletPos, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(direction1 * speedBullets.Value * 0.4f, ForceMode2D.Impulse);
             rb.AddForce(-direction * reculGlaceGRENADE.Value, ForceMode2D.Impulse);
-            //FindObjectOfType<T10_AudioManager>().Play("sniper");
+            FindObjectOfType<T10_AudioManager>().Play("GrenadeLauncher");
             yield return new WaitForSeconds(cadenceGRENADE.Value / cadenceGenerale.Value);
         }
         canFire = true;

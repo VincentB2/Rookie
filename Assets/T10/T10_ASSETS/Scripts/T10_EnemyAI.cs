@@ -127,6 +127,7 @@ public class T10_EnemyAI : MonoBehaviour
         if (lifeEnemy <= 0)
         {
             Destroy(hearts);
+            enemyCount.GetComponent<T10_EnemyCount>().EnemiesDead.Value++;
             int randEmoji = Random.Range(0, 2);
             int randLoot = Random.Range(0, 5);
             int randBig = Random.Range(0, 5);
@@ -198,8 +199,7 @@ public class T10_EnemyAI : MonoBehaviour
                 }
             }
             FindObjectOfType<T10_AudioManager>().Play("enemyDeath");
-            Debug.Log("Compteur = " + PlayerPrefs.GetInt("count"));
-            enemyCount.GetComponent<T10_EnemyCount>().EnemiesDead.Value++;
+            
             Destroy(transform.gameObject);
         }
     }

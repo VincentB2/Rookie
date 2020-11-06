@@ -67,7 +67,7 @@ class T10_Emoji : MonoBehaviour
             {
                 if (player.GetComponent<T10_PlayerFight>().playerHP < player.GetComponent<T10_PlayerFight>().playerHPValue && player.GetComponent<T10_PlayerFight>().playerHP != 0)
                 {
-                    player.GetComponent<T10_PlayerFight>().playerHP += 1;
+                    player.GetComponent<T10_PlayerFight>().playerHP = 10;
                 }
             }
             else if (emojiType == Type.SmilingImp)
