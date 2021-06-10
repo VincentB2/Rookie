@@ -53,7 +53,6 @@ class T10_UI : MonoBehaviour
         PauseLayer.SetActive(!isGameMenued && isGamePaused && !Player.isEndMenued);
         MenuLayerEnd.SetActive(!isGameMenued && !isGamePaused && Player.isEndMenued);
         ScoreText.GetComponent<TextMeshProUGUI>().text = "Your score : " + Player.timerScore;
-
         if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
     }
     void PauseResumeGame() { isGamePaused ^= true; }
@@ -64,5 +63,5 @@ class T10_UI : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("SalleArcade");
     }
-    void QuitGame() { Application.Quit(); }
+    public void QuitGame() { Application.Quit(); }
 }
